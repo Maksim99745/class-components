@@ -1,0 +1,16 @@
+.searchInputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 380px;
+  height: 8dvh;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.searchInput {
+  width: 230px;
+  height: 25px;
+  border-radius: 3px;
+}
