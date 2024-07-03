@@ -15,6 +15,22 @@
   animation: spin 2s linear infinite;
 }
 
+.name-container {
+  display: flex;
+  width: fit-content;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.error-button {
+  width: fit-content;
+  height: 20px;
+  font-size: small;
+  padding: 0;
+  color: red;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
