@@ -16,3 +16,10 @@ export interface Character {
   edited: string;
   url: string;
 }
+
+export interface CharactersData {
+  count: number;
+  next?: null;
+  previous?: null;
+  results: Character[];
+}

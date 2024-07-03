@@ -1,32 +1,32 @@
 import { ChangeEvent, Component, FormEvent } from 'react';
 
-import { Character } from '@models/character';
-import { getCharacter } from '../hooks/getCharacter';
+import { CharactersData } from '@models/character';
+import { getCharacters } from '../methods/getCharacter';
 import styles from './Search.module.scss';
 
 interface SearchProps {
-  lastQuery?: string;
-  updateSearchResult: (characters: Character[]) => void;
+  query?: string;
+  updateSearchResult: (characters: CharactersData) => void;
 }
 
-export class Search extends Component<SearchProps> {
-  private query: string;
-  private updateSearchResult: (characters: Character[]) => void;
-
+export class Search extends Component<SearchProps, SearchProps> {
   constructor(props: SearchProps) {
     super(props);
-    this.query = props.lastQuery || '';
-    this.updateSearchResult = props.updateSearchResult;
+    this.state = {
+      query: props.query,
+      updateSearchResult: props.updateSearchResult,
+    };
   }
 
   private handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.query = event.target.value;
+    this.setState({ query: event.target.value });
   };
 
   private handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const basics = await getCharacter({ query: this.query });
-    this.updateSearchResult(basics);
+    const { query = '', updateSearchResult } = this.state;
+    const characters = await getCharacters({ query });
+    updateSearchResult(characters);
   };
 
   public render(): React.ReactNode {
@@ -38,7 +38,6 @@ export class Search extends Component<SearchProps> {
             onChange={this.handleChange}
             type="search"
             className={styles.searchInput}
-            required
           />
           <button type="submit">Search</button>
         </div>

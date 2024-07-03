@@ -1,30 +1,31 @@
 import { Component } from 'react';
-import { Character } from '../../models/character';
+import { CharactersData } from '../../models/character';
+import styles from './MainPage.module.scss';
 import { Results } from './components/Results';
 import { Search } from './components/Search';
 
 interface MainPageState {
-  characters: Character[];
+  characters: CharactersData | null;
 }
 
 export class MainPage extends Component<Record<string, never>, MainPageState> {
   constructor(props: Record<string, never>) {
     super(props);
     this.state = {
-      characters: [],
+      characters: null,
     };
 
     this.updateState = this.updateState.bind(this);
   }
 
-  public updateState(characters: Character[]) {
+  public updateState(characters: CharactersData) {
     this.setState({ characters });
   }
 
   public render(): React.ReactNode {
     const { characters } = this.state;
     return (
-      <div style={{ marginTop: '100px' }}>
+      <div className={styles.mainPage}>
         <p>Find your favorite The Star Wars character!</p>
         <Search updateSearchResult={this.updateState} />
         <Results characters={characters} />
