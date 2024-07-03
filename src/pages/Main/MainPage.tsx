@@ -29,11 +29,20 @@ export class MainPage extends Component<Record<string, never>, MainPageState> {
     this.setState({ characters });
   }
 
+  public throwTestError() {
+    throw new Error('test error');
+  }
+
   public render(): React.ReactNode {
     const { characters, isSearching } = this.state;
     return (
       <div className={styles.mainPage}>
-        <p>Find your favorite The Star Wars character!</p>
+        <div className={styles.nameContainer}>
+          <p>Find your favorite The Star Wars character!</p>
+          <button type="button" className={styles.errorButton} onClick={this.throwTestError}>
+            Error button
+          </button>
+        </div>
         <Search updateSearchResult={this.updateSearchResult} updateSearchingStatus={this.updateSearchingStatus} />
         <Results characters={characters} />
         {isSearching && <div className={styles.loader} />}
