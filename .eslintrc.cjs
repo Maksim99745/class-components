@@ -87,5 +87,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react-compiler/react-compiler': 'error',
     'react/prefer-stateless-function': 'off',
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   },
 };

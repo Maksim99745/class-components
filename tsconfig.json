@@ -9,6 +9,8 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "noEmit": true,
     "baseUrl": "./",
     "paths": {
