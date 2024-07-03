@@ -1,8 +1,10 @@
+import { CharactersData } from '@models/character';
 import { Component } from 'react';
-import { Character } from '../../../models/character';
+import { CharacterView } from './CharacterView';
+import styles from './Results.module.scss';
 
 interface ResultsProps {
-  characters: Character[];
+  characters: CharactersData | null;
 }
 
 export class Results extends Component<ResultsProps, ResultsProps> {
@@ -23,12 +25,16 @@ export class Results extends Component<ResultsProps, ResultsProps> {
   public render(): React.ReactNode {
     const { characters } = this.state;
     return (
-      <div>
-        {characters.length > 0 ? (
-          characters.map((character) => <div key={character.created}>{character.name}</div>)
-        ) : (
-          <div>Not found</div>
-        )}
+      <div className={styles.resultsBlock}>
+        {characters?.results?.map((character) => (
+          <CharacterView
+            key={character.name}
+            name={character.name}
+            gender={character.gender}
+            height={character.height}
+          />
+        ))}
+        {characters?.count === 0 && <div>Not found</div>}
       </div>
     );
   }

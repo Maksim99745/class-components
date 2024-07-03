@@ -1,6 +1,9 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2022: true,},
+  env: {
+    browser: true,
+    es2022: true,
+  },
   extends: [
     'airbnb',
     'airbnb/hooks',
@@ -12,15 +15,22 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    project: './tsconfig.json', // Path to your tsconfig.json
   },
-  plugins: ['react-refresh', '@typescript-eslint', 'react', 'prettier', 'unused-imports', 'react-compiler'],
+  plugins: [
+    'react-refresh',
+    '@typescript-eslint',
+    'react',
+    'prettier',
+    'unused-imports',
+    'react-compiler',
+  ],
   rules: {
     '@typescript-eslint/no-unused-vars': [
-      'warn', // or "error"
+      'warn',
       {
         argsIgnorePattern: '^',
         varsIgnorePattern: '^',
