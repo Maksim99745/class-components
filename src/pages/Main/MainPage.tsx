@@ -6,6 +6,7 @@ import { Search } from './components/Search';
 
 interface MainPageState {
   characters: CharactersData | null;
+  isSearching: boolean;
 }
 
 export class MainPage extends Component<Record<string, never>, MainPageState> {
@@ -13,22 +14,29 @@ export class MainPage extends Component<Record<string, never>, MainPageState> {
     super(props);
     this.state = {
       characters: null,
+      isSearching: false,
     };
 
-    this.updateState = this.updateState.bind(this);
+    this.updateSearchResult = this.updateSearchResult.bind(this);
+    this.updateSearchingStatus = this.updateSearchingStatus.bind(this);
   }
 
-  public updateState(characters: CharactersData) {
+  private updateSearchingStatus(value: boolean) {
+    this.setState({ isSearching: value });
+  }
+
+  public updateSearchResult(characters: CharactersData) {
     this.setState({ characters });
   }
 
   public render(): React.ReactNode {
-    const { characters } = this.state;
+    const { characters, isSearching } = this.state;
     return (
       <div className={styles.mainPage}>
         <p>Find your favorite The Star Wars character!</p>
-        <Search updateSearchResult={this.updateState} />
+        <Search updateSearchResult={this.updateSearchResult} updateSearchingStatus={this.updateSearchingStatus} />
         <Results characters={characters} />
+        {isSearching && <div className={styles.loader} />}
       </div>
     );
   }

@@ -7,6 +7,7 @@ import styles from './Search.module.scss';
 interface SearchProps {
   query?: string;
   updateSearchResult: (characters: CharactersData) => void;
+  updateSearchingStatus: (isSearching: boolean) => void;
 }
 
 export class Search extends Component<SearchProps, SearchProps> {
@@ -15,6 +16,7 @@ export class Search extends Component<SearchProps, SearchProps> {
     this.state = {
       query: props.query,
       updateSearchResult: props.updateSearchResult,
+      updateSearchingStatus: props.updateSearchingStatus,
     };
   }
 
@@ -24,9 +26,11 @@ export class Search extends Component<SearchProps, SearchProps> {
 
   private handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { query = '', updateSearchResult } = this.state;
+    const { query = '', updateSearchResult, updateSearchingStatus } = this.state;
+    updateSearchingStatus(true);
     const characters = await getCharacters({ query });
     updateSearchResult(characters);
+    updateSearchingStatus(false);
   };
 
   public render(): React.ReactNode {
