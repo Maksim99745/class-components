@@ -1,4 +1,3 @@
-import { getValueFromLocalStorage } from '@utils/localStorageController';
 import { Component } from 'react';
 import { CharactersData } from '../../models/character';
 import styles from './MainPage.module.scss';
@@ -6,7 +5,6 @@ import { Results } from './components/Results';
 import { Search } from './components/Search';
 
 interface MainPageState {
-  previousQuery: string;
   characters: CharactersData | null;
   isSearching: boolean;
 }
@@ -15,7 +13,6 @@ export class MainPage extends Component<Record<string, never>, MainPageState> {
   constructor(props: Record<string, never>) {
     super(props);
     this.state = {
-      previousQuery: getValueFromLocalStorage(),
       characters: null,
       isSearching: false,
     };
@@ -37,7 +34,7 @@ export class MainPage extends Component<Record<string, never>, MainPageState> {
   }
 
   public render(): React.ReactNode {
-    const { characters, isSearching, previousQuery } = this.state;
+    const { characters, isSearching } = this.state;
     return (
       <div className={styles.mainPage}>
         <div className={styles.nameContainer}>
@@ -46,11 +43,7 @@ export class MainPage extends Component<Record<string, never>, MainPageState> {
             Error button
           </button>
         </div>
-        <Search
-          updateSearchResult={this.updateSearchResult}
-          updateSearchingStatus={this.updateSearchingStatus}
-          previousQuery={previousQuery}
-        />
+        <Search updateSearchResult={this.updateSearchResult} updateSearchingStatus={this.updateSearchingStatus} />
         <Results characters={characters} />
         {isSearching && <div className={styles.loader} />}
       </div>
