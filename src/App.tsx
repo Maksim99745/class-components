@@ -1,6 +1,6 @@
+import MainPage from '@pages/Main/MainPage';
 import React, { Component } from 'react';
 import './App.css';
-import { MainPage } from './pages/Main/MainPage';
 
 class App extends Component {
   public render(): React.ReactNode {

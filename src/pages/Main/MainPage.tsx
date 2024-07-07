@@ -1,15 +1,16 @@
-import { Component } from 'react';
+import TestErrorBoundary from '@core/api/TestErrorBoundary';
+import React, { Component } from 'react';
 import { CharactersData } from '../../models/character';
-import styles from './MainPage.module.scss';
 import { Results } from './components/Results';
 import { Search } from './components/Search';
+import styles from './MainPage.module.scss';
 
 interface MainPageState {
   characters: CharactersData | null;
   isSearching: boolean;
 }
 
-export class MainPage extends Component<Record<string, never>, MainPageState> {
+class MainPage extends Component<Record<string, never>, MainPageState> {
   constructor(props: Record<string, never>) {
     super(props);
     this.state = {
@@ -19,6 +20,7 @@ export class MainPage extends Component<Record<string, never>, MainPageState> {
 
     this.updateSearchResult = this.updateSearchResult.bind(this);
     this.updateSearchingStatus = this.updateSearchingStatus.bind(this);
+    this.throwTestError = this.throwTestError.bind(this);
   }
 
   private updateSearchingStatus(value: boolean) {
@@ -36,17 +38,21 @@ export class MainPage extends Component<Record<string, never>, MainPageState> {
   public render(): React.ReactNode {
     const { characters, isSearching } = this.state;
     return (
-      <div className={styles.mainPage}>
-        <div className={styles.nameContainer}>
-          <p>Find your favorite The Star Wars character!</p>
-          <button type="button" className={styles.errorButton} onClick={this.throwTestError}>
-            Error button
-          </button>
+      <TestErrorBoundary>
+        <div className={styles.mainPage}>
+          <div className={styles.nameContainer}>
+            <p>Find your favorite The Star Wars character!</p>
+            <button type="button" className={styles.errorButton} onClick={this.throwTestError}>
+              Error button
+            </button>
+          </div>
+          <Search updateSearchResult={this.updateSearchResult} updateSearchingStatus={this.updateSearchingStatus} />
+          <Results characters={characters} />
+          {isSearching && <div className={styles.loader} />}
         </div>
-        <Search updateSearchResult={this.updateSearchResult} updateSearchingStatus={this.updateSearchingStatus} />
-        <Results characters={characters} />
-        {isSearching && <div className={styles.loader} />}
-      </div>
+      </TestErrorBoundary>
     );
   }
 }
+
+export default MainPage;
