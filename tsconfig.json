@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "strict": true,
     "noUnusedLocals": true,
@@ -25,8 +25,7 @@
       "@test/*": ["./src/test/*"]
     }
   },
-  "include": ["src", "tests/setup.ts", "vite.config.ts", "vitest.config.ts"],
-  "files": ["vite.config.ts"],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.node.json"
