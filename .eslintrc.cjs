@@ -26,7 +26,7 @@ module.exports = {
     'react',
     'prettier',
     'unused-imports',
-    'react-compiler',
+    'react-compiler'
   ],
   rules: {
     '@typescript-eslint/no-unused-vars': [
@@ -85,7 +85,7 @@ module.exports = {
     '@typescript-eslint/lines-between-class-members': 'off',
     'no-return-assign': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'react-compiler/react-compiler': 'error',
+    "react-compiler/react-compiler": "error",
     'react/prefer-stateless-function': 'off',
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   },
