@@ -1,6 +1,6 @@
-import TestErrorBoundary from '@core/api/TestErrorBoundary';
 import React, { Component } from 'react';
 import { CharactersData } from '../../models/character';
+import ErrorButton from './components/ErrorButton';
 import { Results } from './components/Results';
 import { Search } from './components/Search';
 import styles from './MainPage.module.scss';
@@ -38,19 +38,15 @@ class MainPage extends Component<Record<string, never>, MainPageState> {
   public render(): React.ReactNode {
     const { characters, isSearching } = this.state;
     return (
-      <TestErrorBoundary>
-        <div className={styles.mainPage}>
-          <div className={styles.nameContainer}>
-            <p>Find your favorite The Star Wars character!</p>
-            <button type="button" className={styles.errorButton} onClick={this.throwTestError}>
-              Error button
-            </button>
-          </div>
-          <Search updateSearchResult={this.updateSearchResult} updateSearchingStatus={this.updateSearchingStatus} />
-          <Results characters={characters} />
-          {isSearching && <div className={styles.loader} />}
+      <div className={styles.mainPage}>
+        <div className={styles.nameContainer}>
+          <p>Find your favorite The Star Wars character!</p>
+          <ErrorButton />
         </div>
-      </TestErrorBoundary>
+        <Search updateSearchResult={this.updateSearchResult} updateSearchingStatus={this.updateSearchingStatus} />
+        <Results characters={characters} />
+        {isSearching && <div className={styles.loader} />}
+      </div>
     );
   }
 }

@@ -2,49 +2,41 @@
 import React, { ReactNode } from 'react';
 
 interface ErrorBoundaryState {
-  hasError: boolean;
   error: Error | null;
-  errorInfo: { componentStack: string | null } | null;
+  hasError: boolean;
 }
 
 interface ErrorBoundaryProps {
   children: ReactNode;
 }
 
-class TestErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
-      hasError: false,
       error: null,
-      errorInfo: null,
+      hasError: false,
     };
   }
 
-  public static getDerivedStateFromError() {
+  public static getDerivedStateFromError(_error: Error) {
     return { hasError: true };
   }
 
   public componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Caught an error in TestErrorBoundary:', error, errorInfo);
-    this.setState({
-      error,
-      errorInfo: {
-        componentStack: errorInfo.componentStack || null,
-      },
-    });
+    this.setState({ error });
   }
 
   public render() {
-    const { hasError, error, errorInfo } = this.state;
+    const { error, hasError } = this.state;
     const { children } = this.props;
 
     if (hasError) {
       return (
         <div>
           <h1>Something went wrong.</h1>
-          <p>{error && error.toString()}</p>
-          <p>{errorInfo && errorInfo.componentStack}</p>
+          <p>Error: {error?.message}</p>
         </div>
       );
     }
@@ -53,4 +45,4 @@ class TestErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundar
   }
 }
 
-export default TestErrorBoundary;
+export default ErrorBoundary;
