@@ -1,0 +1,17 @@
+.search-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 420px;
+  height: 8dvh;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.search-input {
+  width: 230px;
+  height: 25px;
+  border-radius: 3px;
+  border: solid grey 1px;
+}
