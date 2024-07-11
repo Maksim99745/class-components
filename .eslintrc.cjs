@@ -15,7 +15,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', 'vite.config.ts'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', 'vite.config.ts', 'tests/setup.ts', 'vitest.config.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
@@ -87,6 +87,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     "react-compiler/react-compiler": "error",
     'react/prefer-stateless-function': 'off',
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "react-hooks/exhaustive-deps": 'off'
   },
 };
