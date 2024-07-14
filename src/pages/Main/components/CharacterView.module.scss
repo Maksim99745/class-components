@@ -1,5 +1,6 @@
 .character-box {
   width: 200px;
-  height: 80px;
+  height: fit-content;
   border: 1px solid black;
+  border-radius: 5px;
 }

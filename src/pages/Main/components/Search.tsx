@@ -1,29 +1,13 @@
-import { CharactersData } from '@models/character';
-import { ChangeEvent, FormEvent, useEffect } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { useInitFromLocalStorage } from '../hooks/useInitFromLocalStorage';
-import { getCharacters } from '../methods/getCharacter';
 import styles from './Search.module.scss';
 
 interface SearchProps {
-  updateSearchResult: (characters: CharactersData) => void;
-  updateSearchingStatus: (isSearching: boolean) => void;
+  search: (searchQuery: string) => Promise<void>;
 }
 
-export function Search({ updateSearchResult, updateSearchingStatus }: SearchProps) {
+export function Search({ search }: SearchProps) {
   const [query, setQuery] = useInitFromLocalStorage('class-component');
-
-  const search = async (searchQuery: string): Promise<void> => {
-    updateSearchingStatus(true);
-
-    const characters = await getCharacters({ query: searchQuery });
-    updateSearchResult(characters);
-
-    updateSearchingStatus(false);
-  };
-
-  useEffect(() => {
-    search(query);
-  }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setQuery(event.target.value);
