@@ -1,21 +1,22 @@
-import LoaderSpinner from '@components/LoaderSpinner';
 import { Character } from '@models/character';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getCharacters } from '../methods/getCharacter';
 import styles from './ItemDetails.module.scss';
+import LoaderSpinner from './LoaderSpinner';
 
 export default function ItemDetails() {
   const [character, setCharacter] = useState<Character | null>(null);
-  const [isDetailsLoading, setIsDetailsLoading] = useState(false);
+  const [isDetailsLoading, setIsDetailsLoading] = useState(true);
   const { characterName } = useParams();
   const navigate = useNavigate();
 
   const getCharacterDetails = async (characterNames: string): Promise<void> => {
     setIsDetailsLoading(true);
     const charactersData = await getCharacters({ query: characterNames });
+
+    await setCharacter(charactersData.results[0]);
     setIsDetailsLoading(false);
-    setCharacter(charactersData.results[0]);
   };
 
   useEffect(() => {
@@ -24,17 +25,13 @@ export default function ItemDetails() {
     }
   }, [characterName]);
 
-  if (!character) {
-    return null;
-  }
-
   return (
-    <div className={styles.itemDetails}>
+    <div className={styles.itemDetails} data-testid="item-details">
       <button type="button" className={styles.closeButton} onClick={() => navigate('/')}>
         X
       </button>
       {isDetailsLoading && <LoaderSpinner />}
-      {!isDetailsLoading && (
+      {!isDetailsLoading && character && (
         <>
           <p>Name: {character.name}</p>
           <p>Gender: {character.gender}</p>

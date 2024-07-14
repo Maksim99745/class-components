@@ -1,9 +1,8 @@
-// results.test.tsx
-import { CharactersData } from '@models/character'; // Adjust import path as needed
+import { CharactersData } from '@models/character';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { assert, describe, it } from 'vitest';
-import { Results } from './Results'; // Adjust import path as needed
+import { Results } from './Results';
 
 const mockCharactersData: CharactersData = {
   count: 2,

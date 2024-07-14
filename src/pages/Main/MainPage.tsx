@@ -1,8 +1,8 @@
-import LoaderSpinner from '@components/LoaderSpinner';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { CharactersData } from '../../models/character';
 import ErrorButton from './components/ErrorButton';
+import LoaderSpinner from './components/LoaderSpinner';
 import Pagination from './components/Pagination';
 import { Results } from './components/Results';
 import { Search } from './components/Search';
@@ -55,16 +55,16 @@ function MainPage() {
   }, []);
 
   return (
-    <div className={styles.mainPage} onClick={() => closeDetails()} role="presentation">
-      <div className={styles.nameContainer}>
+    <div className={styles.mainPage}>
+      <div className={styles.nameContainer} onClick={() => closeDetails()} role="presentation">
         <h3>Find your favorite The Star Wars character!</h3>
         <ErrorButton />
       </div>
 
       <Search search={search} />
-      <div className={styles.resultsBlock}>
+      <div className={styles.resultsBlock} role="presentation">
         {!isSearching && (
-          <div className={styles.resultsBlock}>
+          <div className={styles.resultsBlock} onClick={() => closeDetails()} role="presentation">
             <Results characters={characters} />
           </div>
         )}
@@ -72,7 +72,9 @@ function MainPage() {
       </div>
 
       {!isSearching && (
-        <Pagination charactersData={characters} currentPageNumber={currentPage} changePage={changePage} />
+        <span onClick={() => closeDetails()} role="presentation">
+          <Pagination charactersData={characters} currentPageNumber={currentPage} changePage={changePage} />
+        </span>
       )}
       {isSearching && <LoaderSpinner />}
     </div>

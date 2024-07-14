@@ -1,4 +1,4 @@
-import LoaderSpinner from '@components/LoaderSpinner';
+import LoaderSpinner from '@pages/Main/components/LoaderSpinner';
 import { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { ItemDetails, MainPage, NotFoundPage } from './routing-pages';
