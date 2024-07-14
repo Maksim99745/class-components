@@ -2,16 +2,18 @@ import styles from './CharacterView.module.scss';
 
 interface CharacterViewProps {
   name: string;
-  gender: string;
-  height: string;
+  openDetails: () => void;
+  getCharacterDetails: (characterName: string) => Promise<void>;
 }
 
-export default function CharacterView({ name, gender, height }: CharacterViewProps) {
+export default function CharacterView({ name, openDetails, getCharacterDetails }: CharacterViewProps) {
+  function handleClick() {
+    openDetails();
+    getCharacterDetails(name);
+  }
   return (
-    <div className={styles.characterBox}>
-      <div>Name: {name}</div>
-      <div>Gender: {gender}</div>
-      <div>Height: {height}</div>
-    </div>
+    <button type="button" className={styles.characterBox} onClick={() => handleClick()}>
+      <div className={styles.characterName}>Name: {name}</div>
+    </button>
   );
 }

@@ -88,6 +88,6 @@ module.exports = {
     "react-compiler/react-compiler": "error",
     'react/prefer-stateless-function': 'off',
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "react-hooks/exhaustive-deps": 'off'
+    "react-hooks/exhaustive-deps": 'off',
   },
 };

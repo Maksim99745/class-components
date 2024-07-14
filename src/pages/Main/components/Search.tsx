@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useInitFromLocalStorage } from '../hooks/useInitFromLocalStorage';
 import styles from './Search.module.scss';
 
@@ -8,13 +9,14 @@ interface SearchProps {
 
 export function Search({ search }: SearchProps) {
   const [query, setQuery] = useInitFromLocalStorage('class-component');
-
+  const navigate = useNavigate();
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setQuery(event.target.value);
   };
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
+    navigate(`/?search=${query}`);
     search(query);
   };
 

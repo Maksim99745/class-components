@@ -1,7 +1,7 @@
-.results-block {
+.items-block {
   display: flex;
   justify-content: space-between;
-  width: 420px;
+  max-width: 420px;
   min-height: 420px;
   gap: 10px;
   margin-top: 10px;
