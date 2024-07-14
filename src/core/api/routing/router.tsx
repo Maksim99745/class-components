@@ -1,8 +1,7 @@
 import LoaderSpinner from '@components/LoaderSpinner';
-import NotFoundPage from '@pages/NotFound/NotFound';
 import { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { MainPage } from './routing-pages';
+import { ItemDetails, MainPage, NotFoundPage } from './routing-pages';
 
 export const router = createBrowserRouter([
   {
@@ -10,10 +9,10 @@ export const router = createBrowserRouter([
     element: <MainPage />,
     children: [
       {
-        index: true,
+        path: 'details/:characterName',
         element: (
           <Suspense fallback={<LoaderSpinner />}>
-            <MainPage />
+            <ItemDetails />
           </Suspense>
         ),
       },

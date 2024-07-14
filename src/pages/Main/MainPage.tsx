@@ -1,9 +1,8 @@
 import LoaderSpinner from '@components/LoaderSpinner';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Character, CharactersData } from '../../models/character';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { CharactersData } from '../../models/character';
 import ErrorButton from './components/ErrorButton';
-import ItemDetails from './components/ItemDetails';
 import Pagination from './components/Pagination';
 import { Results } from './components/Results';
 import { Search } from './components/Search';
@@ -14,12 +13,10 @@ import { getNewPageData } from './methods/getNewPageData';
 
 function MainPage() {
   const [characters, setCharacters] = useState<CharactersData | null>(null);
-  const [isDetailsOpened, setIsDetailsOpened] = useState(false);
-  const [isDetailsLoading, setIsDetailsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isSearching, setIsSearching] = useState(false);
-  const [characterDetails, setCharacterDetails] = useState<Character | null>(null);
   const [initialQuery, setInitialQuery] = useInitFromLocalStorage('class-component');
+  const location = useLocation();
   const navigate = useNavigate();
 
   const updateSearchingStatus = (value: boolean): void => {
@@ -46,20 +43,10 @@ function MainPage() {
     }
   };
 
-  const getCharacterDetails = async (characterName: string): Promise<void> => {
-    setIsDetailsLoading(true);
-    const charactersData = await getCharacters({ query: characterName });
-    setIsDetailsLoading(false);
-    setCharacterDetails(charactersData.results[0]);
-  };
-
-  const openDetails = () => {
-    setIsDetailsOpened(true);
-  };
-
   const closeDetails = () => {
+    const isDetailsOpened = location.pathname.includes('details');
     if (isDetailsOpened) {
-      setIsDetailsOpened(false);
+      navigate('/');
     }
   };
 
@@ -73,22 +60,17 @@ function MainPage() {
         <h3>Find your favorite The Star Wars character!</h3>
         <ErrorButton />
       </div>
+
       <Search search={search} />
-      {!isSearching && (
-        <div className={styles.resultsBlock}>
-          <Results characters={characters} openDetails={openDetails} getCharacterDetails={getCharacterDetails} />
-          {isDetailsOpened && characterDetails && (
-            <div className={styles.detailsSection}>
-              <ItemDetails
-                isLoading={isDetailsLoading}
-                isOpened={isDetailsOpened}
-                setIsOpened={closeDetails}
-                character={characterDetails}
-              />
-            </div>
-          )}
-        </div>
-      )}
+      <div className={styles.resultsBlock}>
+        {!isSearching && (
+          <div className={styles.resultsBlock}>
+            <Results characters={characters} />
+          </div>
+        )}
+        <Outlet />
+      </div>
+
       {!isSearching && (
         <Pagination charactersData={characters} currentPageNumber={currentPage} changePage={changePage} />
       )}

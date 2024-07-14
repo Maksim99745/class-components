@@ -9,7 +9,7 @@ export default function PaginationButton({ pageNumber, changePage, currentPageNu
   const isCurrentPage = currentPageNumber === pageNumber;
   return (
     <button
-      className={isCurrentPage && styles.currentPage}
+      className={isCurrentPage ? styles.currentPage : undefined}
       type="button"
       key={pageNumber}
       onClick={() => {

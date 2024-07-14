@@ -1,15 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './CharacterView.module.scss';
 
 interface CharacterViewProps {
   name: string;
-  openDetails: () => void;
-  getCharacterDetails: (characterName: string) => Promise<void>;
 }
 
-export default function CharacterView({ name, openDetails, getCharacterDetails }: CharacterViewProps) {
+export default function CharacterView({ name }: CharacterViewProps) {
+  const navigate = useNavigate();
+
   function handleClick() {
-    openDetails();
-    getCharacterDetails(name);
+    navigate(`/details/${name}`);
   }
   return (
     <button type="button" className={styles.characterBox} onClick={() => handleClick()}>

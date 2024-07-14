@@ -4,11 +4,9 @@ import styles from './Results.module.scss';
 
 interface ResultsProps {
   characters: CharactersData | null;
-  openDetails: () => void;
-  getCharacterDetails: (characterName: string) => Promise<void>;
 }
 
-export function Results({ characters, openDetails, getCharacterDetails }: ResultsProps) {
+export function Results({ characters }: ResultsProps) {
   if (!characters) {
     return null;
   }
@@ -16,7 +14,7 @@ export function Results({ characters, openDetails, getCharacterDetails }: Result
     <div className={styles.itemsBlock}>
       {characters?.results?.map((character) => (
         <div key={character.name}>
-          <CharacterView name={character.name} openDetails={openDetails} getCharacterDetails={getCharacterDetails} />
+          <CharacterView name={character.name} />
         </div>
       ))}
       {characters?.count === 0 && <div>Not found</div>}
