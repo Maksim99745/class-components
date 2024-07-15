@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import styles from './CharacterView.module.scss';
 
 interface CharacterViewProps {
@@ -6,14 +6,21 @@ interface CharacterViewProps {
 }
 
 export default function CharacterView({ name }: CharacterViewProps) {
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  function handleClick() {
-    navigate(`/details/${name}`);
-  }
+  const page = searchParams.get('page') || 1;
+
+  // function handleClick() {
+  //   const page = searchParams.get('page') || 1;
+  //   setSearchParams({ page: String(page), details: name });
+
+  //   // navigate(`/details/${name}`);
+  // }
   return (
-    <button type="button" className={styles.characterBox} onClick={() => handleClick()}>
-      <div className={styles.characterName}>Name: {name}</div>
+    <button type="button" className={styles.characterBox}>
+      <Link to={{ pathname: `/details/${name}`, search: `page=${page}` }}>
+        <div className={styles.characterName}>Name: {name}</div>
+      </Link>
     </button>
   );
 }
