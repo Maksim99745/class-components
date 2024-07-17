@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { assert, describe, expect, it } from 'vitest';
-import MainPage from '../MainPage';
-import ItemDetails from './ItemDetails';
+import MainPage from '../../MainPage';
+import ItemDetails from './CharacterDetails';
 
 describe('ItemDetails Component', () => {
   it('displays a loading indicator while fetching data', async () => {

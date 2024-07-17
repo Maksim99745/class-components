@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { assert, describe, it, vi } from 'vitest';
-import CharacterView from './CharacterView';
-import ItemDetails from './ItemDetails';
+import ItemDetails from '../CharacterDetails/CharacterDetails';
+import CharacterItem from './CharacterItem';
 
-describe('CharacterView Component', () => {
+describe('CharacterItem Component', () => {
   it('Ensure that the card component renders the relevant card data', () => {
     render(
       <MemoryRouter>
-        <CharacterView name="Luke" />
+        <CharacterItem name="Luke" />
       </MemoryRouter>,
     );
 
@@ -25,7 +25,7 @@ describe('CharacterView Component', () => {
 
     render(
       <MemoryRouter initialEntries={['/']}>
-        <CharacterView name="R2-D2" />
+        <CharacterItem name="R2-D2" />
       </MemoryRouter>,
     );
 
@@ -39,7 +39,7 @@ describe('CharacterView Component', () => {
   it('Check that clicking triggers an additional API call to fetch detailed information', async () => {
     render(
       <MemoryRouter initialEntries={['/']}>
-        <CharacterView name="R2-D2" />
+        <CharacterItem name="R2-D2" />
       </MemoryRouter>,
     );
 

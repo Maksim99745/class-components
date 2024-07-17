@@ -1,5 +1,6 @@
 .character-box {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding: 0 10px;
   width: 180px;
@@ -7,10 +8,13 @@
   min-height: 50px;
   border: 1px solid black;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 .character-name {
   align-self: center;
   font-size: 14px;
+}
+
+.favorite {
+  font-size: 12px;
 }

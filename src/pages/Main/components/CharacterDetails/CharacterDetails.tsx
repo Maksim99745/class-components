@@ -1,11 +1,11 @@
 import { Character } from '@models/character';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { getCharacters } from '../methods/getCharacter';
-import styles from './ItemDetails.module.scss';
-import LoaderSpinner from './LoaderSpinner';
+import { getCharacters } from '../../methods/getCharacter';
+import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
+import styles from './CharacterDetails.module.scss';
 
-export default function ItemDetails() {
+export default function CharacterDetails() {
   const [character, setCharacter] = useState<Character | null>(null);
   const [isDetailsLoading, setIsDetailsLoading] = useState(true);
   const { characterName } = useParams();

@@ -1,6 +1,6 @@
+import { useInitFromLocalStorage } from '@pages/Main/hooks/useInitFromLocalStorage';
 import { ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useInitFromLocalStorage } from '../hooks/useInitFromLocalStorage';
 import styles from './Search.module.scss';
 
 interface SearchProps {

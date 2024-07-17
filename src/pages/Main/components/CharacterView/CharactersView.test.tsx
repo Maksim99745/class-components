@@ -2,7 +2,7 @@ import { CharactersData } from '@models/character';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { assert, describe, it } from 'vitest';
-import { Results } from './Results';
+import { CharactersView } from './CharactersView';
 
 const mockCharactersData: CharactersData = {
   count: 2,
@@ -55,11 +55,11 @@ const emptyCharactersData: CharactersData = {
   results: [],
 };
 
-describe('Results Component', () => {
+describe('CharactersView Component', () => {
   it('renders a certain number of character cards', () => {
     render(
       <MemoryRouter>
-        <Results characters={mockCharactersData} />
+        <CharactersView characters={mockCharactersData} />
       </MemoryRouter>,
     );
 
@@ -70,7 +70,7 @@ describe('Results Component', () => {
   it('displays "Not found" if no characters are passed', () => {
     render(
       <MemoryRouter>
-        <Results characters={emptyCharactersData} />
+        <CharactersView characters={emptyCharactersData} />
       </MemoryRouter>,
     );
 
@@ -81,7 +81,7 @@ describe('Results Component', () => {
   it('does not render any cards if data is null', () => {
     render(
       <MemoryRouter>
-        <Results characters={null} />
+        <CharactersView characters={null} />
       </MemoryRouter>,
     );
 

@@ -2,6 +2,6 @@ import { lazy } from 'react';
 
 const MainPage = lazy(() => import('@pages/Main/MainPage'));
 const NotFoundPage = lazy(() => import('@pages/NotFound/NotFound'));
-const ItemDetails = lazy(() => import('@pages/Main/components/ItemDetails'));
+const CharacterDetails = lazy(() => import('@pages/Main/components/CharacterDetails/CharacterDetails'));
 
-export { ItemDetails, MainPage, NotFoundPage };
+export { CharacterDetails, MainPage, NotFoundPage };

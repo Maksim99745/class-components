@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { CharactersData } from '../../models/character';
-import ErrorButton from './components/ErrorButton';
-import LoaderSpinner from './components/LoaderSpinner';
-import Pagination from './components/Pagination';
-import { Results } from './components/Results';
-import { Search } from './components/Search';
+import { CharactersView } from './components/CharacterView/CharactersView';
+import ErrorButton from './components/ErrorButton/ErrorButton';
+import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
+import Pagination from './components/Pagination/Pagination';
+import { Search } from './components/Search/Search';
 import { useInitFromLocalStorage } from './hooks/useInitFromLocalStorage';
 import styles from './MainPage.module.scss';
 import { getCharacters } from './methods/getCharacter';
@@ -66,16 +66,18 @@ function MainPage() {
 
   return (
     <div className={styles.mainPage}>
-      <div className={styles.nameContainer} onClick={() => closeDetails()} role="presentation">
+      <div className={styles.nameContainer}>
         <h3>Find your favorite The Star Wars character!</h3>
         <ErrorButton />
       </div>
+      <div onClick={() => closeDetails()} role="presentation">
+        <Search search={search} />
+      </div>
 
-      <Search search={search} />
       <div className={styles.resultsBlock} role="presentation">
         {!isSearching && (
-          <div className={styles.resultsBlock} onClick={() => closeDetails()} role="presentation">
-            <Results characters={characters} />
+          <div className={styles.resultsBlock} role="presentation">
+            <CharactersView characters={characters} />
           </div>
         )}
         <Outlet />
