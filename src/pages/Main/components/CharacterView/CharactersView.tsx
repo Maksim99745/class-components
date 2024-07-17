@@ -14,7 +14,7 @@ export function CharactersView({ characters }: ResultsProps) {
     <div className={styles.itemsBlock}>
       {characters?.results?.map((character) => (
         <div key={character.name}>
-          <CharacterItem name={character.name} />
+          <CharacterItem character={character} />
         </div>
       ))}
       {characters?.count === 0 && <div>Not found</div>}

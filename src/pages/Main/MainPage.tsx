@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { RootState } from 'src/store/store';
 import { CharactersData } from '../../models/character';
 import { CharactersView } from './components/CharacterView/CharactersView';
 import ErrorButton from './components/ErrorButton/ErrorButton';
+import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
 import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import Pagination from './components/Pagination/Pagination';
 import { Search } from './components/Search/Search';
@@ -20,6 +23,7 @@ function MainPage() {
   const currentPage = Number(searchParams.get('page'));
   const [isSearching, setIsSearching] = useState(false);
   const [initialQuery, setInitialQuery] = useInitFromLocalStorage('class-component');
+  const favorites = useSelector((state: RootState) => state.favorites);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -96,6 +100,7 @@ function MainPage() {
         </span>
       )}
       {isSearching && <LoaderSpinner />}
+      {favorites.length !== 0 && <FavoritesToolBar />}
     </div>
   );
 }

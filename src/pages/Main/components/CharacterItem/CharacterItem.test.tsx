@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { assert, describe, it, vi } from 'vitest';
-import ItemDetails from '../CharacterDetails/CharacterDetails';
+import CharacterDetails from '../CharacterDetails/CharacterDetails';
 import CharacterItem from './CharacterItem';
 
 describe('CharacterItem Component', () => {
@@ -19,7 +19,7 @@ describe('CharacterItem Component', () => {
   it('opens the detailed card component when clicked', async () => {
     render(
       <MemoryRouter initialEntries={['/details/Luke']}>
-        <ItemDetails />
+        <CharacterDetails />
       </MemoryRouter>,
     );
 

@@ -1,0 +1,19 @@
+.favorites-toolbar {
+  width: 80%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.favorites-amount {
+  padding: 0;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.buttons-block {
+  margin-bottom: 10px;
+}

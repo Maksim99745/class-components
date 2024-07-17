@@ -1,17 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { Character } from '@models/character';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: string[] = [];
+const initialState: Character[] = [];
 
 export const favoritesSlice = createSlice({
   name: 'favorite',
   initialState,
   reducers: {
-    toggleFavorite: (state, { payload: name }) => {
-      const index = state.indexOf(name);
+    toggleFavorite: (state, action: PayloadAction<Character>) => {
+      const character = action.payload;
+      const index = state.findIndex((fav) => fav.name === character.name);
       if (index >= 0) {
         state.splice(index, 1);
       } else {
-        state.push(name);
+        state.push(character);
+      }
+    },
+    unselectAll: (state) => {
+      for (let i = 0; i < state.length; i += 1) {
+        state.splice(0, state.length);
       }
     },
   },
