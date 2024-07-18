@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Search.module.scss';
 
 interface SearchProps {
-  search: (searchQuery: string) => Promise<void>;
+  search: (searchQuery: string) => void;
 }
 
 export function Search({ search }: SearchProps) {

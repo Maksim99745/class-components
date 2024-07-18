@@ -1,37 +1,13 @@
-import { Character } from '@models/character';
 import { saveAs } from 'file-saver';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/store/store';
 import { useMainPageActions } from '../../hooks/useMainPageActions';
 import styles from './FavoritesToolBar.module.scss';
+import { arrayToCSV } from './methods/arrayToCSV';
 
 export default function FavoritesToolBar() {
   const favorites = useSelector((state: RootState) => state.favorites);
   const { unselectAll } = useMainPageActions();
-
-  const arrayToCSV = (data: Character[]): string => {
-    if (data.length === 0) {
-      return '';
-    }
-    function isKeyOfCharacter(key: string): key is keyof Character {
-      return key in data[0];
-    }
-    const headers: Array<keyof Character> = Object.keys(data[0]).filter(isKeyOfCharacter);
-    const csvRows = [
-      headers.join(','),
-      ...data.map((row) =>
-        headers
-          .map((header) => {
-            const value = row[header];
-            const escaped = `${value}`.replace(/"/g, '\\"');
-            return `"${escaped}"`;
-          })
-          .join(','),
-      ),
-    ];
-
-    return csvRows.join('\n');
-  };
 
   const handleDownload = () => {
     const csvData = arrayToCSV(favorites);
