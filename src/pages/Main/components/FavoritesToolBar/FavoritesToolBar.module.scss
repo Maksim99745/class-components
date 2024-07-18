@@ -1,11 +1,12 @@
 .favorites-toolbar {
-  width: 80%;
+  width: fit-content;
   height: fit-content;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
   border-radius: 5px;
-  margin-top: 15px;
+  padding: 0 20px;
+  margin-top: 10px;
 }
 
 .favorites-amount {

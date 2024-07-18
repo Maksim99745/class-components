@@ -1,4 +1,5 @@
 import ErrorBoundary from '@core/api/ErrorBoundary';
+import { ThemeProvider } from '@core/themes/ThemeProvider';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -13,7 +14,9 @@ if (rootElement) {
     <React.StrictMode>
       <ErrorBoundary>
         <Provider store={store}>
-          <App />
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
         </Provider>
       </ErrorBoundary>
     </React.StrictMode>,

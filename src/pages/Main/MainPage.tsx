@@ -9,6 +9,7 @@ import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
 import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import Pagination from './components/Pagination/Pagination';
 import { Search } from './components/Search/Search';
+import { ThemeButton } from './components/ThemeButton/ThemeButton';
 import { useInitFromLocalStorage } from './hooks/useInitFromLocalStorage';
 import { useMainPageActions } from './hooks/useMainPageActions';
 import styles from './MainPage.module.scss';
@@ -55,6 +56,7 @@ function MainPage() {
 
   return (
     <div className={styles.mainPage}>
+      <ThemeButton />
       <div className={styles.nameContainer}>
         <h3>Find your favorite The Star Wars character!</h3>
         <ErrorButton />
@@ -62,7 +64,6 @@ function MainPage() {
       <div onClick={() => closeDetails()} role="presentation">
         <Search updateQuery={updateQuery} isBusy={isBusy} />
       </div>
-
       <div className={styles.resultsBlock} role="presentation">
         {!isBusy && (
           <div className={styles.resultsBlock} role="presentation">
@@ -71,7 +72,6 @@ function MainPage() {
         )}
         <Outlet />
       </div>
-
       {!isBusy && (
         <span onClick={() => closeDetails()} role="presentation">
           <Pagination currentPage={currentPage} toPrevPage={toPrevPage} toNextPage={toNextPage} />

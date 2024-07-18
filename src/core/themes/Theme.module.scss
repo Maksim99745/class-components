@@ -1,0 +1,19 @@
+.dark-theme {
+  position: relative;
+  background: rgb(69, 62, 65);
+  background: radial-gradient(circle, rgb(51, 46, 48) 0%, rgba(0, 0, 0, 1) 100%);
+  border: 1px solid wheat;
+  color: white;
+}
+
+.dark-theme a {
+  color: white;
+}
+
+.dark-theme div {
+  border-color: wheat;
+}
+
+.dark-theme button {
+  background-color: rgb(239, 209, 209);
+}
