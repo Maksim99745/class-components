@@ -16,9 +16,11 @@ export default function Pagination({ toPrevPage, toNextPage, currentPage }: Pagi
   const right = currentPage === getPagesAmount(charactersData[0]?.count ?? 1);
   const left = currentPage === 1;
   const amountOfPages = getPagesAmount(charactersData[0]?.count ?? 1);
-  if (charactersData[0]?.count === 0) {
+
+  if (charactersData[0]?.count <= 1) {
     return null;
   }
+
   return (
     <div className={styles.paginationContainer}>
       <button type="button" disabled={left} onClick={toPrevPage}>

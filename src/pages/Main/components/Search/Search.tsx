@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Search.module.scss';
 
 interface SearchProps {
-  search: (searchQuery: string) => void;
+  updateQuery: (searchQuery: string) => void;
+  isBusy: boolean;
 }
 
-export function Search({ search }: SearchProps) {
+export function Search({ updateQuery, isBusy }: SearchProps) {
   const [query, setQuery] = useInitFromLocalStorage('class-component');
   const navigate = useNavigate();
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -17,7 +18,7 @@ export function Search({ search }: SearchProps) {
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     navigate(`/?search=${query}`);
-    search(query);
+    updateQuery(query);
   };
 
   return (
@@ -30,7 +31,9 @@ export function Search({ search }: SearchProps) {
           type="search"
           className={styles.searchInput}
         />
-        <button type="submit">Search</button>
+        <button type="submit" disabled={isBusy}>
+          Search
+        </button>
       </div>
     </form>
   );

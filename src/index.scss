@@ -49,6 +49,11 @@ button {
   transition: border-color 0.25s;
 }
 
+button:disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

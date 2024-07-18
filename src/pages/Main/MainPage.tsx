@@ -22,8 +22,8 @@ function MainPage() {
   const navigate = useNavigate();
   const { updateCharacters } = useMainPageActions();
 
-  const { data: searchResult, isLoading: isSearching } = useGetCharacterByNameQuery(query);
-  const { data: pageData, isLoading: isPageLoading } = useGetCharactersByPageQuery(String(currentPage));
+  const { data: searchResult, isFetching: isSearching } = useGetCharacterByNameQuery(query);
+  const { data: pageData, isFetching: isPageLoading } = useGetCharactersByPageQuery(String(currentPage));
 
   const isBusy = isSearching || isPageLoading;
 
@@ -35,7 +35,7 @@ function MainPage() {
     updateCharacters(pageData);
   }, [pageData]);
 
-  const handleQueryChange = (searchQuery: string): void => {
+  const updateQuery = (searchQuery: string): void => {
     setQuery(searchQuery);
   };
 
@@ -60,7 +60,7 @@ function MainPage() {
         <ErrorButton />
       </div>
       <div onClick={() => closeDetails()} role="presentation">
-        <Search search={handleQueryChange} />
+        <Search updateQuery={updateQuery} isBusy={isBusy} />
       </div>
 
       <div className={styles.resultsBlock} role="presentation">

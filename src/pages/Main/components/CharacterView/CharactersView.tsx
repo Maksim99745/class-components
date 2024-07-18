@@ -8,6 +8,7 @@ export function CharactersView() {
   if (!characters) {
     return null;
   }
+  // loading
   return (
     <div className={styles.itemsBlock}>
       {characters[0]?.results?.map((character) => (
