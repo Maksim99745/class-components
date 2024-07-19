@@ -1,4 +1,3 @@
-import { saveAs } from 'file-saver';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/store/store';
 import { useMainPageActions } from '../../hooks/useMainPageActions';
@@ -12,8 +11,15 @@ export default function FavoritesToolBar() {
   const handleDownload = () => {
     const csvData = arrayToCSV(favorites);
     const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+
     const filename = `${favorites.length}_favorites.csv`;
-    saveAs(blob, filename);
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
