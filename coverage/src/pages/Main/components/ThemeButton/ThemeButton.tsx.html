@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -85,41 +85,41 @@
 <a name='L20'></a><a href='#L20'>20</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useTheme, useThemeUpdate } from '@core/themes/themeHooks';
 &nbsp;
-export <span class="fstat-no" title="function not covered" >function ThemeButton() {</span>
-<span class="cstat-no" title="statement not covered" >  const isDarkTheme = useTheme();</span>
-<span class="cstat-no" title="statement not covered" >  const updateTheme = useThemeUpdate();</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;label htmlFor="themeButton"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;input</span>
-<span class="cstat-no" title="statement not covered" >        type="checkbox"</span>
-<span class="cstat-no" title="statement not covered" >        id="themeButton"</span>
-<span class="cstat-no" title="statement not covered" >        style={{ cursor: 'pointer' }}</span>
-<span class="cstat-no" title="statement not covered" >        name="themeButton"</span>
-<span class="cstat-no" title="statement not covered" >        checked={isDarkTheme}</span>
-<span class="cstat-no" title="statement not covered" >        onChange={() =&gt; updateTheme()}</span>
-<span class="cstat-no" title="statement not covered" >      /&gt;</span>
+export function ThemeButton() {
+  const isDarkTheme = useTheme();
+  const updateTheme = useThemeUpdate();
+  return (
+    &lt;label htmlFor="themeButton"&gt;
+      &lt;input
+        type="checkbox"
+        id="themeButton"
+        style={{ cursor: 'pointer' }}
+        name="themeButton"
+        checked={isDarkTheme}
+        onChange={<span class="fstat-no" title="function not covered" >() =&gt; updateTheme()}</span>
+      /&gt;
       Dark theme
-<span class="cstat-no" title="statement not covered" >    &lt;/label&gt;</span>
+    &lt;/label&gt;
   );
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -127,7 +127,7 @@ export <span class="fstat-no" title="function not covered" >function ThemeButton
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-19T17:48:58.828Z
+                at 2024-07-22T15:38:38.843Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

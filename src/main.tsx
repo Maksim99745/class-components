@@ -1,4 +1,4 @@
-import ErrorBoundary from '@core/api/ErrorBoundary';
+import ErrorBoundary from '@core/ErrorBoundary/ErrorBoundary';
 import { ThemeProvider } from '@core/themes/ThemeProvider';
 import React from 'react';
 import ReactDOM from 'react-dom/client';

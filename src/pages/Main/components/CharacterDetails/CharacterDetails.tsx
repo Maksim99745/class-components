@@ -1,39 +1,29 @@
-import { Character } from '@models/character';
-import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { getCharacters } from '../../methods/getCharacter';
+import { useGetCharacterByNameQuery } from '../../../../store/api/api';
 import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 import styles from './CharacterDetails.module.scss';
 
 export default function CharacterDetails() {
-  const [character, setCharacter] = useState<Character | null>(null);
-  const [isDetailsLoading, setIsDetailsLoading] = useState(true);
   const { characterName } = useParams();
   const [searchParams] = useSearchParams();
   const page = searchParams.get('page') || 1;
   const navigate = useNavigate();
 
-  const getCharacterDetails = async (characterNames: string): Promise<void> => {
-    setIsDetailsLoading(true);
-    const charactersData = await getCharacters({ query: characterNames });
+  const { data: charactersData, isFetching: isSearching } = useGetCharacterByNameQuery(characterName ?? '');
 
-    await setCharacter(charactersData.results[0]);
-    setIsDetailsLoading(false);
-  };
+  if (!charactersData) {
+    return <div>Character details is not found</div>;
+  }
 
-  useEffect(() => {
-    if (characterName) {
-      getCharacterDetails(characterName);
-    }
-  }, [characterName]);
+  const character = charactersData.results[0];
 
   return (
     <div className={styles.itemDetails} data-testid="item-details">
       <button type="button" className={styles.closeButton} onClick={() => navigate(`/?page=${page}`)}>
         X
       </button>
-      {isDetailsLoading && <LoaderSpinner />}
-      {!isDetailsLoading && character && (
+      {isSearching && <LoaderSpinner />}
+      {!isSearching && character && (
         <>
           <p>Name: {character.name}</p>
           <p>Gender: {character.gender}</p>

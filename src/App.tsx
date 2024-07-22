@@ -1,4 +1,4 @@
-import { router } from '@core/api/routing/router';
+import { router } from '@core/routing/router';
 import { useTheme } from '@core/themes/themeHooks';
 import LoaderSpinner from '@pages/Main/components/LoaderSpinner/LoaderSpinner';
 import { RouterProvider } from 'react-router-dom';

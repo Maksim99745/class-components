@@ -13,6 +13,7 @@
     "esModuleInterop": true,
     "noEmit": true,
     "baseUrl": "./",
+    "types": ["vitest/globals"],
     "paths": {
       "@core/*": ["./src/core/*"],
       "@pages/*": ["./src/pages/*"],

@@ -23,6 +23,8 @@ export default defineConfig({
       '@constants': resolve(__dirname, './src/constants/'),
       '@utils': resolve(__dirname, './src/utils/'),
       '@hooks': resolve(__dirname, './src/hooks/'),
+      '@store': resolve(__dirname, '.src/store/'),
+      msw: 'msw/lib/esm',
     },
   },
   css: {
