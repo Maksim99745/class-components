@@ -1,24 +1,13 @@
+import { store } from '@store/store';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import configureStore from 'redux-mock-store';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { Search } from './Search';
 
-const mockStore = configureStore();
-const store = mockStore({});
-const updateQuery = (query: string) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  query;
-};
+const updateQuery = (query: string) => query;
 
-describe.skip('Search component', () => {
-  const mockSearch = vi.fn();
-
-  beforeEach(() => {
-    localStorage.clear();
-  });
-
+describe('Search component', () => {
   it('saves the entered value to local storage when clicking the Search button', async () => {
     render(
       <MemoryRouter>

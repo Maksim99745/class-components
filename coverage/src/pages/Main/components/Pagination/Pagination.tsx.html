@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.39% </span>
+                <span class="strong">91.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/23</span>
+                <span class='fraction'>21/23</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">42.85% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>3/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.39% </span>
+                <span class="strong">91.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/23</span>
+                <span class='fraction'>21/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -111,28 +111,28 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useSelector } from 'react-redux';
 import { RootState } from 'src/store/store';
 import styles from './Pagination.module.scss';
@@ -144,30 +144,30 @@ interface PaginationProps {
 }
 &nbsp;
 const ITEMS_PER_PAGE = 10;
-const getPagesAmount = <span class="fstat-no" title="function not covered" >(itemAmount: number): number =&gt; Math.ceil(itemAmount / ITEMS_PER_PAGE);</span>
+const getPagesAmount = (itemAmount: number): number =&gt; Math.ceil(itemAmount / ITEMS_PER_PAGE);
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export default function Pagination({ toPrevPage, toNextPage, currentPage }: PaginationProps) {</span></span>
-<span class="cstat-no" title="statement not covered" >  const charactersData = useSelector((state: RootState) =&gt; state.characters);</span>
-<span class="cstat-no" title="statement not covered" >  const right = currentPage === getPagesAmount(charactersData[0]?.count ?? 1);</span>
-<span class="cstat-no" title="statement not covered" >  const left = currentPage === 1;</span>
-<span class="cstat-no" title="statement not covered" >  const amountOfPages = getPagesAmount(charactersData[0]?.count ?? 1);</span>
+export default function Pagination({ toPrevPage, toNextPage, currentPage }: PaginationProps) {
+  const charactersData = useSelector((state: RootState) =&gt; state.characters);
+  const right = currentPage === getPagesAmount(charactersData[0]?.<span class="branch-0 cbranch-no" title="branch not covered" >count ?? 1)</span>;
+  const left = currentPage === 1;
+  const amountOfPages = getPagesAmount(charactersData[0]?.<span class="branch-0 cbranch-no" title="branch not covered" >count ?? 1)</span>;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (charactersData[0]?.count &lt;= 1) {</span>
+  if (charactersData[0]?.count &lt;= 1) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    return null;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className={styles.paginationContainer}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button type="button" disabled={left} onClick={toPrevPage}&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {'&lt;'}</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div&gt;{`${currentPage || '1'} / ${amountOfPages}`}&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button type="button" disabled={right} onClick={toNextPage}&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {'&gt;'}</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+  return (
+    &lt;div className={styles.paginationContainer}&gt;
+      &lt;button type="button" disabled={left} onClick={toPrevPage}&gt;
+        {'&lt;'}
+      &lt;/button&gt;
+      &lt;div&gt;{`${<span class="branch-0 cbranch-no" title="branch not covered" >currentPage || '1'}</span> / ${amountOfPages}`}&lt;/div&gt;
+      &lt;button type="button" disabled={right} onClick={toNextPage}&gt;
+        {'&gt;'}
+      &lt;/button&gt;
+    &lt;/div&gt;
   );
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -175,7 +175,7 @@ const getPagesAmount = <span class="fstat-no" title="function not covered" >(ite
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-23T11:05:51.998Z
+                at 2024-07-23T17:17:22.789Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>
