@@ -1,35 +1,31 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
-import configureStore from 'redux-mock-store';
+import { mockCharactersData } from '@mocks/mockCharactersData';
+import { store } from '@store/store';
 import { assert, describe, it, vi } from 'vitest';
 import CharacterDetails from '../CharacterDetails/CharacterDetails';
 import CharacterItem from './CharacterItem';
 
-const mockStore = configureStore();
-const store = mockStore({});
+const characterData = mockCharactersData.results[0];
 
-const characterData = {
-  name: 'Bod Wik',
-  height: '172',
-  mass: '77',
-  hair_color: 'blond',
-  skin_color: 'fair',
-  eye_color: 'blue',
-  birth_year: '19BBY',
-  gender: 'male',
-  homeworld: 'Tatooine',
-  films: ['A New Hope', 'The Empire Strikes Back', 'Return of the Jedi', 'The Force Awakens'],
-  species: [],
-  vehicles: ['Snowspeeder', 'Imperial Speeder Bike'],
-  starships: ['X-wing', 'Imperial shuttle'],
-  created: '2014-12-09T13:50:51.644000Z',
-  edited: '2014-12-20T21:17:56.891000Z',
-  url: 'https://swapi.dev/api/people/1/',
-};
+vi.mock('@store/api/api', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@store/api/api')>();
+  return {
+    ...actual,
+    useGetCharacterByNameQuery: vi.fn(),
+  };
+});
 
-describe.skip('CharacterItem Component', () => {
+describe('CharacterItem Component', () => {
+  let mockUseGetCharacterByNameQuery: ReturnType<typeof vi.fn>;
+
+  beforeEach(async () => {
+    mockUseGetCharacterByNameQuery = vi.mocked((await import('@store/api/api')).useGetCharacterByNameQuery);
+    mockUseGetCharacterByNameQuery.mockReset();
+  });
+
   it('Ensure that the card component renders the relevant card data', () => {
     render(
       <MemoryRouter>
@@ -39,26 +35,27 @@ describe.skip('CharacterItem Component', () => {
       </MemoryRouter>,
     );
 
-    const characterCard = screen.getByText('Name: Bod Wik');
+    const characterCard = screen.getByText('Name: Luke Skywalker');
     assert.exists(characterCard);
   });
 
   it('opens the detailed card component when clicked', async () => {
+    mockUseGetCharacterByNameQuery.mockReturnValue({
+      data: mockCharactersData,
+      isFetching: false,
+    });
     render(
-      <MemoryRouter initialEntries={['/details/Luke']}>
-        <CharacterDetails />
-      </MemoryRouter>,
-    );
-
-    render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/details/Luke%20Skywalker?page=1']}>
         <Provider store={store}>
-          <CharacterItem character={characterData} />
+          <Routes>
+            <Route path="/" element={<CharacterItem character={characterData} />} />
+            <Route path="details/:characterName" element={<CharacterDetails />} />
+          </Routes>
         </Provider>
       </MemoryRouter>,
     );
 
-    const characterCard = screen.getByText('Name: Bod Wik');
+    const characterCard = screen.getByText('Name: Luke Skywalker');
     fireEvent.click(characterCard);
 
     const itemDetailsComponent = screen.getByTestId('item-details');
@@ -74,7 +71,7 @@ describe.skip('CharacterItem Component', () => {
       </MemoryRouter>,
     );
 
-    const characterCard = screen.getByText('Name: Bod Wik');
+    const characterCard = screen.getByText('Name: Luke Skywalker');
     const fetchSpy = vi.spyOn(window, 'fetch');
 
     fireEvent.click(characterCard);

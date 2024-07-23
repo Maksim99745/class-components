@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
     eslint({
       include: 'src/**/*.+(js|jsx|ts|tsx)',
     }),
+    tsconfigPaths(),
   ],
   envPrefix: 'CTP_',
   resolve: {
@@ -23,7 +25,8 @@ export default defineConfig({
       '@constants': resolve(__dirname, './src/constants/'),
       '@utils': resolve(__dirname, './src/utils/'),
       '@hooks': resolve(__dirname, './src/hooks/'),
-      '@store': resolve(__dirname, '.src/store/'),
+      '@store': resolve(__dirname, './src/store/'),
+      '@mocks': resolve(__dirname, './src/mocks/'),
       msw: 'msw/lib/esm',
     },
   },

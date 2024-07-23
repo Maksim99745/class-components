@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -112,33 +112,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Character } from '@models/character';
 import { useSelector } from 'react-redux';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -150,33 +150,33 @@ interface CharacterItemProps {
   character: Character;
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export default function CharacterItem({ character }: CharacterItemProps) {</span></span>
-<span class="cstat-no" title="statement not covered" >  const [searchParams] = useSearchParams();</span>
-<span class="cstat-no" title="statement not covered" >  const page = searchParams.get('page') || 1;</span>
-<span class="cstat-no" title="statement not covered" >  const favorites = useSelector((state: RootState) =&gt; state.favorites);</span>
-<span class="cstat-no" title="statement not covered" >  const { toggleFavorite } = useMainPageActions();</span>
+export default function CharacterItem({ character }: CharacterItemProps) {
+  const [searchParams] = useSearchParams();
+  const page = searchParams.get('page') || 1;
+  const favorites = useSelector((state: RootState) =&gt; state.favorites);
+  const { toggleFavorite } = useMainPageActions();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className={styles.characterBox}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Link to={{ pathname: `/details/${character.name}`, search: `page=${page}` }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div className={styles.characterName}&gt;Name: {character.name}&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/Link&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;label htmlFor={character.name} className={styles.favorite}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;input</span>
-<span class="cstat-no" title="statement not covered" >            type="checkbox"</span>
-<span class="cstat-no" title="statement not covered" >            id={character.name}</span>
-<span class="cstat-no" title="statement not covered" >            style={{ cursor: 'pointer' }}</span>
-<span class="cstat-no" title="statement not covered" >            name="favorite"</span>
-<span class="cstat-no" title="statement not covered" >            checked={favorites.includes(character)}</span>
-<span class="cstat-no" title="statement not covered" >            onChange={() =&gt; toggleFavorite(character)}</span>
-<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+  return (
+    &lt;div className={styles.characterBox}&gt;
+      &lt;Link to={{ pathname: `/details/${character.name}`, search: `page=${page}` }}&gt;
+        &lt;div className={styles.characterName}&gt;Name: {character.name}&lt;/div&gt;
+      &lt;/Link&gt;
+      &lt;div&gt;
+        &lt;label htmlFor={character.name} className={styles.favorite}&gt;
+          &lt;input
+            type="checkbox"
+            id={character.name}
+            style={{ cursor: 'pointer' }}
+            name="favorite"
+            checked={favorites.includes(character)}
+            onChange={<span class="fstat-no" title="function not covered" >() =&gt; toggleFavorite(character)}</span>
+          /&gt;
           Favorite
-<span class="cstat-no" title="statement not covered" >        &lt;/label&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+        &lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   );
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -184,7 +184,7 @@ interface CharacterItemProps {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-22T15:38:38.843Z
+                at 2024-07-23T11:05:51.998Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

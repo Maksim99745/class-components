@@ -1,15 +1,16 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
 import { describe, expect, it } from 'vitest';
-import { mockCharactersData } from '../../../../mocks/handlers';
-import { store } from '../../../../store/store';
+
+import { store } from '@store/store';
+
+import { mockCharactersData } from '@mocks/mockCharactersData';
 import MainPage from '../../MainPage';
 import CharacterDetails from './CharacterDetails';
 
-vi.mock('../../../../store/api/api', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('../../../../store/api/api')>();
+vi.mock('@store/api/api', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@store/api/api')>();
   return {
     ...actual,
     useGetCharacterByNameQuery: vi.fn(),
@@ -20,7 +21,7 @@ describe('CharacterDetails Component', () => {
   let mockUseGetCharacterByNameQuery: ReturnType<typeof vi.fn>;
 
   beforeEach(async () => {
-    mockUseGetCharacterByNameQuery = vi.mocked((await import('../../../../store/api/api')).useGetCharacterByNameQuery);
+    mockUseGetCharacterByNameQuery = vi.mocked((await import('@store/api/api')).useGetCharacterByNameQuery);
     mockUseGetCharacterByNameQuery.mockReset();
   });
 

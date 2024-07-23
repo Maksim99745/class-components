@@ -23,7 +23,9 @@
       "@constants/*": ["./src/constants/*"],
       "@utils/*": ["./src/utils/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@test/*": ["./src/test/*"]
+      "@test/*": ["./src/test/*"],
+      "@store/*": ["./src/store/*"],
+      "@mocks/*": ["./src/mocks/*"]
     }
   },
   "include": ["src", "tests/setup.ts"],

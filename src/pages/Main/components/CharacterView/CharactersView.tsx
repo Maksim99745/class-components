@@ -6,9 +6,9 @@ import styles from './CharactersView.module.scss';
 export function CharactersView() {
   const characters = useSelector((state: RootState) => state.characters);
   if (!characters) {
-    return null;
+    return <div>Characters data not found</div>;
   }
-  // loading
+
   return (
     <div className={styles.itemsBlock}>
       {characters[0]?.results?.map((character) => (
@@ -16,7 +16,7 @@ export function CharactersView() {
           <CharacterItem character={character} />
         </div>
       ))}
-      {characters[0]?.count === 0 && <div>Not found</div>}
+      {characters[0]?.count === 0 && <div>Characters data not found</div>}
     </div>
   );
 }
