@@ -17,10 +17,15 @@ vi.mock('../../hooks/useMainPageActions', async (importOriginal) => {
   };
 });
 
+vi.stubGlobal('URL', {
+  createObjectURL: vi.fn(() => 'http://mockurl'),
+  revokeObjectURL: vi.fn(),
+});
+
 const mockStore = configureMockStore();
 const store = mockStore({ characters: [mockCharactersData], favorites: [mockCharacterData] });
 
-describe('FavoritesToolBar Component', () => {
+describe('FavoritesToolBar Component', async () => {
   it('FavoritesToolBar renders the right amount of favorite characters', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
@@ -52,5 +57,21 @@ describe('FavoritesToolBar Component', () => {
     fireEvent.click(unselectAllButton);
 
     assert.exists(unselectAllSpy);
+  });
+
+  it('check that click to download button casing download process', async () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Provider store={store}>
+          <FavoritesToolBar />
+        </Provider>
+      </MemoryRouter>,
+    );
+
+    const downloadButton = screen.getByText('Download');
+
+    fireEvent.click(downloadButton);
+    const createObjectSpy = vi.spyOn(document, 'createElement');
+    assert.exists(createObjectSpy);
   });
 });

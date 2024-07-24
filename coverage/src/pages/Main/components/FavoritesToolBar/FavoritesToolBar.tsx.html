@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.51% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.51% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,38 +107,38 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useSelector } from 'react-redux';
 import { RootState } from 'src/store/store';
 import { useMainPageActions } from '../../hooks/useMainPageActions';
@@ -149,19 +149,19 @@ export default function FavoritesToolBar() {
   const favorites = useSelector((state: RootState) =&gt; state.favorites);
   const { unselectAll } = useMainPageActions();
 &nbsp;
-  const handleDownload = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const csvData = arrayToCSV(favorites);</span>
-<span class="cstat-no" title="statement not covered" >    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });</span>
+  const handleDownload = () =&gt; {
+    const csvData = arrayToCSV(favorites);
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const url = URL.createObjectURL(blob);</span>
-<span class="cstat-no" title="statement not covered" >    const link = document.createElement('a');</span>
-<span class="cstat-no" title="statement not covered" >    link.href = url;</span>
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const filename = `${favorites.length}_favorites.csv`;</span>
-<span class="cstat-no" title="statement not covered" >    link.download = filename;</span>
-<span class="cstat-no" title="statement not covered" >    link.click();</span>
-<span class="cstat-no" title="statement not covered" >    URL.revokeObjectURL(url);</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
+    const filename = `${favorites.length}_favorites.csv`;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 &nbsp;
   return (
     &lt;div className={styles.favoritesToolbar}&gt;
@@ -170,7 +170,7 @@ export default function FavoritesToolBar() {
         &lt;button type="button" onClick={() =&gt; unselectAll()}&gt;
           Unselect all
         &lt;/button&gt;
-        &lt;button type="button" onClick={<span class="fstat-no" title="function not covered" >() =&gt; handleDownload()}&gt;</span>
+        &lt;button type="button" onClick={() =&gt; handleDownload()}&gt;
           Download
         &lt;/button&gt;
       &lt;/div&gt;
@@ -184,7 +184,7 @@ export default function FavoritesToolBar() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-23T17:17:22.789Z
+                at 2024-07-24T12:58:56.118Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

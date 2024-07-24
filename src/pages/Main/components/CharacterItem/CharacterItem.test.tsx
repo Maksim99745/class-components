@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { mockCharactersData } from '@mocks/mockCharactersData';
 import { store } from '@store/store';
 import { assert, describe, it, vi } from 'vitest';
+import { useMainPageActions } from '../../hooks/useMainPageActions';
 import CharacterDetails from '../CharacterDetails/CharacterDetails';
 import CharacterItem from './CharacterItem';
 
@@ -18,12 +19,27 @@ vi.mock('@store/api/api', async (importOriginal) => {
   };
 });
 
+vi.mock('../../hooks/useMainPageActions', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../../hooks/useMainPageActions')>();
+  return {
+    ...actual,
+    useMainPageActions: () => ({
+      toggleFavorite: vi.fn(),
+    }),
+  };
+});
+
 describe('CharacterItem Component', () => {
   let mockUseGetCharacterByNameQuery: ReturnType<typeof vi.fn>;
+  let mockToggleFavorite: ReturnType<typeof vi.fn>;
 
   beforeEach(async () => {
     mockUseGetCharacterByNameQuery = vi.mocked((await import('@store/api/api')).useGetCharacterByNameQuery);
     mockUseGetCharacterByNameQuery.mockReset();
+    mockToggleFavorite = vi.mocked(
+      (await import('../../hooks/useMainPageActions')).useMainPageActions().toggleFavorite,
+    );
+    mockToggleFavorite.mockReset();
   });
 
   it('Ensure that the card component renders the relevant card data', () => {
@@ -77,5 +93,22 @@ describe('CharacterItem Component', () => {
     fireEvent.click(characterCard);
 
     assert.exists(fetchSpy);
+  });
+
+  it('Check that clicking on favorite triggers toggleFavorite action', async () => {
+    const actions = useMainPageActions();
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Provider store={store}>
+          <CharacterItem character={characterData} />
+        </Provider>
+      </MemoryRouter>,
+    );
+    const characterCard = screen.getByText('Favorite');
+    const toggleSpy = vi.spyOn(actions, 'toggleFavorite');
+
+    fireEvent.click(characterCard);
+
+    assert.exists(toggleSpy);
   });
 });

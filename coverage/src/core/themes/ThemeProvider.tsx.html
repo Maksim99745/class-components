@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -80,40 +80,40 @@
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { ReactNode, useCallback, useState } from 'react';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import ThemeContext from './ThemeContext';</span>
-<span class="cstat-no" title="statement not covered" >import ThemeUpdateContext from './ThemeUpdateContext';</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ReactNode, useCallback, useState } from 'react';
+import ThemeContext from './ThemeContext';
+import ThemeUpdateContext from './ThemeUpdateContext';
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function ThemeProvider({ children }: { children: ReactNode }) {</span>
-<span class="cstat-no" title="statement not covered" >  const [darkTheme, toggleDarkTheme] = useState(false);</span>
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [darkTheme, toggleDarkTheme] = useState(false);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const toggleTheme = useCallback(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    toggleDarkTheme((prevDarkTheme) =&gt; !prevDarkTheme);</span>
-<span class="cstat-no" title="statement not covered" >  }, []);</span>
+  const toggleTheme = useCallback(() =&gt; {
+    toggleDarkTheme((prevDarkTheme) =&gt; !prevDarkTheme);
+  }, []);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;ThemeUpdateContext.Provider value={toggleTheme}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;ThemeContext.Provider value={darkTheme}&gt;{children}&lt;/ThemeContext.Provider&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/ThemeUpdateContext.Provider&gt;</span>
+  return (
+    &lt;ThemeUpdateContext.Provider value={toggleTheme}&gt;
+      &lt;ThemeContext.Provider value={darkTheme}&gt;{children}&lt;/ThemeContext.Provider&gt;
+    &lt;/ThemeUpdateContext.Provider&gt;
   );
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -121,7 +121,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-23T17:17:22.789Z
+                at 2024-07-24T12:58:56.118Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
