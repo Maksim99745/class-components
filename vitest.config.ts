@@ -9,7 +9,6 @@ export default defineConfig({
     eslint({
       include: 'src/**/*.+(js|jsx|ts|tsx)',
     }),
-    // tsconfigPaths(),
   ],
   envPrefix: 'CTP_',
   resolve: {
