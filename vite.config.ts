@@ -11,6 +11,7 @@ export default defineConfig({
     }),
     // tsconfigPaths(),
   ],
+  publicDir: 'public',
   envPrefix: 'CTP_',
   resolve: {
     alias: {
