@@ -19,9 +19,7 @@
     "test": "vitest run --coverage",
     "test:watch ": "vitest",
     "prepare": "husky install",
-    "validate:all": "npm run lint && npm run prettier && npm run types-check && npm run test",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "validate:all": "npm run lint && npm run prettier && npm run types-check && npm run test"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
