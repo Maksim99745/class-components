@@ -1,0 +1,13 @@
+.pagination-container {
+  display: flex;
+  margin-top: 15px;
+}
+
+.current-page {
+  cursor: default;
+  outline: 1px solid;
+}
+
+.current-page:hover {
+  border-color: disabled;
+}
