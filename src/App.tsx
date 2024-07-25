@@ -9,7 +9,7 @@ export default function App() {
   const isDarkTheme = useTheme();
 
   return (
-    <div className={isDarkTheme && styles.darkTheme} data-testid="theme-container">
+    <div className={isDarkTheme ? styles.darkTheme : undefined} data-testid="theme-container">
       <div className="App">
         <RouterProvider router={router} fallbackElement={<LoaderSpinner />} />
       </div>

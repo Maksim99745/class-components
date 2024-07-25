@@ -4,13 +4,13 @@ import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-// https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
-    eslint({
-      include: 'src/**/*.+(js|jsx|ts|tsx)',
-    }),
+    mode === 'development' &&
+      eslint({
+        include: 'src/**/*.+(js|jsx|ts|tsx)',
+      }),
     tsconfigPaths(),
   ],
   envPrefix: 'CTP_',
@@ -46,4 +46,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

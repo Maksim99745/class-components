@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1721897580524" clover="3.2.0">
-  <project timestamp="1721897580524" name="All files">
-    <metrics statements="591" coveredstatements="540" conditionals="100" coveredconditionals="91" methods="51" coveredmethods="43" elements="742" coveredelements="674" complexity="0" loc="591" ncloc="591" packages="24" files="32" classes="32"/>
+<coverage generated="1721898934176" clover="3.2.0">
+  <project timestamp="1721898934176" name="All files">
+    <metrics statements="589" coveredstatements="538" conditionals="100" coveredconditionals="91" methods="51" coveredmethods="43" elements="740" coveredelements="672" complexity="0" loc="589" ncloc="589" packages="24" files="32" classes="32"/>
     <package name="src">
       <metrics statements="37" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.tsx" path="/home/maksim99745/projects/my-app/src/App.tsx">
@@ -625,24 +625,22 @@
       </file>
     </package>
     <package name="src.pages.NotFound">
-      <metrics statements="15" coveredstatements="15" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <metrics statements="13" coveredstatements="13" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="NotFound.tsx" path="/home/maksim99745/projects/my-app/src/pages/NotFound/NotFound.tsx">
-        <metrics statements="15" coveredstatements="15" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
+        <metrics statements="13" coveredstatements="13" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.store">
