@@ -3,14 +3,15 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     eslint({
       include: 'src/**/*.+(js|jsx|ts|tsx)',
     }),
+    // tsconfigPaths(),
   ],
+  publicDir: 'public',
   envPrefix: 'CTP_',
   resolve: {
     alias: {
@@ -22,7 +23,8 @@ export default defineConfig({
       '@enums': resolve(__dirname, './src/enums/'),
       '@constants': resolve(__dirname, './src/constants/'),
       '@utils': resolve(__dirname, './src/utils/'),
-      '@hooks': resolve(__dirname, './src/hooks/'),
+      '@store': resolve(__dirname, './src/store/'),
+      '@mocks': resolve(__dirname, './src/mocks/'),
     },
   },
   css: {
