@@ -26,7 +26,6 @@ export default defineConfig(({ mode }) => ({
       '@utils': resolve(__dirname, './src/utils/'),
       '@store': resolve(__dirname, './src/store/'),
       '@mocks': resolve(__dirname, './src/mocks/'),
-      msw: 'msw/lib/esm',
     },
   },
   css: {
