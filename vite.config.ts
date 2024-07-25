@@ -3,15 +3,14 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     eslint({
       include: 'src/**/*.+(js|jsx|ts|tsx)',
     }),
-    // tsconfigPaths(),
   ],
-  base: '/',
   envPrefix: 'CTP_',
   resolve: {
     alias: {
