@@ -31,7 +31,7 @@ describe('CharacterDetails Component', () => {
       isFetching: true,
     });
     render(
-      <MemoryRouter initialEntries={['/details/R5-D4']}>
+      <MemoryRouter initialEntries={['/details/Luke%20Skywalker?page=1']}>
         <Provider store={store}>
           <Routes>
             <Route path="details/:characterName" element={<CharacterDetails />} />
@@ -44,6 +44,25 @@ describe('CharacterDetails Component', () => {
     assert.exists(loader);
   });
 
+  it('Make sure the detailed card component correctly displays the detailed card data', async () => {
+    mockUseGetCharacterByNameQuery.mockReturnValue({
+      data: mockCharactersData,
+      isFetching: false,
+    });
+    render(
+      <MemoryRouter initialEntries={['/details/Luke%20Skywalker?page=1']}>
+        <Provider store={store}>
+          <Routes>
+            <Route path="details/:characterName" element={<CharacterDetails />} />
+          </Routes>
+        </Provider>
+      </MemoryRouter>,
+    );
+
+    const name = screen.getByText('Name: Luke Skywalker');
+    assert.exists(name);
+  });
+
   it('hides the detailed card component when close button is clicked', async () => {
     mockUseGetCharacterByNameQuery.mockReturnValue({
       data: mockCharactersData,
@@ -51,7 +70,7 @@ describe('CharacterDetails Component', () => {
     });
     render(
       <Provider store={store}>
-        <MemoryRouter initialEntries={['/details/R5-D4']}>
+        <MemoryRouter initialEntries={['/details/Luke%20Skywalker?page=1']}>
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/details/:characterName" element={<CharacterDetails />} />

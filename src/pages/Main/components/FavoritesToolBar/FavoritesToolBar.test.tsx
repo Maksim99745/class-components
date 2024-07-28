@@ -4,15 +4,16 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
 import { vi } from 'vitest';
-import { useMainPageActions } from '../../hooks/useMainPageActions';
 import FavoritesToolBar from './FavoritesToolBar';
+
+const unselectAll = vi.fn();
 
 vi.mock('../../hooks/useMainPageActions', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../../hooks/useMainPageActions')>();
   return {
     ...actual,
     useMainPageActions: () => ({
-      unselectAll: vi.fn(),
+      unselectAll,
     }),
   };
 });
@@ -40,10 +41,6 @@ describe('FavoritesToolBar Component', async () => {
   });
 
   it('dispatches unselectAll action when "Unselect all" button is clicked', async () => {
-    const actions = useMainPageActions();
-    const unselectAllSpy = vi.spyOn(actions, 'unselectAll');
-    unselectAllSpy.mockClear();
-
     render(
       <MemoryRouter initialEntries={['/']}>
         <Provider store={store}>
@@ -56,7 +53,7 @@ describe('FavoritesToolBar Component', async () => {
 
     fireEvent.click(unselectAllButton);
 
-    assert.exists(unselectAllSpy);
+    expect(unselectAll).toHaveBeenCalled();
   });
 
   it('check that click to download button casing download process', async () => {

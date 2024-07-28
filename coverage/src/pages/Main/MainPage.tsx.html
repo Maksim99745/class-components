@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>66/72</span>
+                <span class='fraction'>63/63</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>66/72</span>
+                <span class='fraction'>63/63</span>
             </div>
         
             
@@ -138,18 +138,7 @@
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,8 +153,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -186,17 +175,6 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -237,7 +215,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { RootState } from 'src/store/store';
 import { useGetCharacterByNameQuery, useGetCharactersByPageQuery } from '../../store/api/api';
 import { CharactersView } from './components/CharacterView/CharactersView';
@@ -249,11 +227,11 @@ import { Search } from './components/Search/Search';
 import { ThemeButton } from './components/ThemeButton/ThemeButton';
 import { useInitFromLocalStorage } from './hooks/useInitFromLocalStorage';
 import { useMainPageActions } from './hooks/useMainPageActions';
+import { usePagination } from './hooks/usePagination';
 import styles from './MainPage.module.scss';
 &nbsp;
 function MainPage() {
-  const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
-  const currentPage = Number(searchParams.get('page'));
+  const { currentPage, toPrevPage, toNextPage } = usePagination();
   const [query, setQuery] = useInitFromLocalStorage('class-component');
   const favorites = useSelector((state: RootState) =&gt; state.favorites);
   const location = useLocation();
@@ -273,17 +251,6 @@ function MainPage() {
     updateCharacters(pageData);
   }, [pageData]);
 &nbsp;
-  const updateQuery = <span class="fstat-no" title="function not covered" >(searchQuery: string): void =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setQuery(searchQuery);</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-&nbsp;
-  const toPrevPage = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setSearchParams({ page: String(currentPage - 1) });</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-  const toNextPage = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setSearchParams({ page: String(currentPage + 1) });</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-&nbsp;
   const closeDetails = () =&gt; {
     const isDetailsOpened = location.pathname.includes('details');
     if (isDetailsOpened) {
@@ -299,7 +266,7 @@ function MainPage() {
         &lt;ErrorButton /&gt;
       &lt;/div&gt;
       &lt;div onClick={() =&gt; closeDetails()} role="presentation"&gt;
-        &lt;Search updateQuery={updateQuery} isBusy={isBusy} /&gt;
+        &lt;Search updateQuery={setQuery} isBusy={isBusy} /&gt;
       &lt;/div&gt;
       &lt;div className={styles.resultsBlock} role="presentation"&gt;
         {!isBusy &amp;&amp; (
@@ -328,7 +295,7 @@ export default MainPage;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-25T12:42:30.339Z
+                at 2024-07-28T14:31:26.386Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

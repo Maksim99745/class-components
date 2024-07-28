@@ -1,15 +1,9 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
-import eslint from 'vite-plugin-eslint';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    eslint({
-      include: 'src/**/*.+(js|jsx|ts|tsx)',
-    }),
-  ],
+  plugins: [react()],
   envPrefix: 'CTP_',
   resolve: {
     alias: {

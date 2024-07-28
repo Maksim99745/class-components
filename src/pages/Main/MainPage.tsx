@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { RootState } from 'src/store/store';
 import { useGetCharacterByNameQuery, useGetCharactersByPageQuery } from '../../store/api/api';
 import { CharactersView } from './components/CharacterView/CharactersView';
@@ -12,11 +12,11 @@ import { Search } from './components/Search/Search';
 import { ThemeButton } from './components/ThemeButton/ThemeButton';
 import { useInitFromLocalStorage } from './hooks/useInitFromLocalStorage';
 import { useMainPageActions } from './hooks/useMainPageActions';
+import { usePagination } from './hooks/usePagination';
 import styles from './MainPage.module.scss';
 
 function MainPage() {
-  const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
-  const currentPage = Number(searchParams.get('page'));
+  const { currentPage, toPrevPage, toNextPage } = usePagination();
   const [query, setQuery] = useInitFromLocalStorage('class-component');
   const favorites = useSelector((state: RootState) => state.favorites);
   const location = useLocation();
@@ -36,17 +36,6 @@ function MainPage() {
     updateCharacters(pageData);
   }, [pageData]);
 
-  const updateQuery = (searchQuery: string): void => {
-    setQuery(searchQuery);
-  };
-
-  const toPrevPage = () => {
-    setSearchParams({ page: String(currentPage - 1) });
-  };
-  const toNextPage = () => {
-    setSearchParams({ page: String(currentPage + 1) });
-  };
-
   const closeDetails = () => {
     const isDetailsOpened = location.pathname.includes('details');
     if (isDetailsOpened) {
@@ -62,7 +51,7 @@ function MainPage() {
         <ErrorButton />
       </div>
       <div onClick={() => closeDetails()} role="presentation">
-        <Search updateQuery={updateQuery} isBusy={isBusy} />
+        <Search updateQuery={setQuery} isBusy={isBusy} />
       </div>
       <div className={styles.resultsBlock} role="presentation">
         {!isBusy && (
