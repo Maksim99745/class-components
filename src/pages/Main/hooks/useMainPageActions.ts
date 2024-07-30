@@ -11,3 +11,5 @@ export const useMainPageActions = () => {
 
   return useMemo(() => bindActionCreators(rootActions, dispatch), [dispatch]);
 };
+
+export default useMainPageActions;

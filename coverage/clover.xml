@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1722177086413" clover="3.2.0">
-  <project timestamp="1722177086413" name="All files">
-    <metrics statements="592" coveredstatements="543" conditionals="101" coveredconditionals="91" methods="51" coveredmethods="44" elements="744" coveredelements="678" complexity="0" loc="592" ncloc="592" packages="24" files="33" classes="33"/>
+<coverage generated="1722258531127" clover="3.2.0">
+  <project timestamp="1722258531127" name="All files">
+    <metrics statements="593" coveredstatements="544" conditionals="101" coveredconditionals="91" methods="51" coveredmethods="44" elements="745" coveredelements="679" complexity="0" loc="593" ncloc="593" packages="24" files="33" classes="33"/>
     <package name="src">
       <metrics statements="37" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.tsx" path="/home/maksim99745/projects/my-app/src/App.tsx">
@@ -585,7 +585,7 @@
       </file>
     </package>
     <package name="src.pages.Main.hooks">
-      <metrics statements="34" coveredstatements="30" conditionals="7" coveredconditionals="7" methods="5" coveredmethods="3"/>
+      <metrics statements="35" coveredstatements="31" conditionals="7" coveredconditionals="7" methods="5" coveredmethods="3"/>
       <file name="useInitFromLocalStorage.ts" path="/home/maksim99745/projects/my-app/src/pages/Main/hooks/useInitFromLocalStorage.ts">
         <metrics statements="12" coveredstatements="12" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -602,7 +602,7 @@
         <line num="16" count="12" type="stmt"/>
       </file>
       <file name="useMainPageActions.ts" path="/home/maksim99745/projects/my-app/src/pages/Main/hooks/useMainPageActions.ts">
-        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -613,6 +613,7 @@
         <line num="10" count="5" type="stmt"/>
         <line num="12" count="5" type="cond" truecount="1" falsecount="0"/>
         <line num="13" count="5" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
       </file>
       <file name="usePagination.ts" path="/home/maksim99745/projects/my-app/src/pages/Main/hooks/usePagination.ts">
         <metrics statements="12" coveredstatements="8" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="1"/>
