@@ -32,6 +32,17 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "tests/setup.ts", "./dist/types/**/*.ts", "./next-env.d.ts", ".next/types/**/*.ts"],
+  "include": [
+    "src/**/*",
+    "components/**/*",
+    "pages/**/*",
+    "tests/setup.ts",
+    "./dist/types/**/*.ts",
+    "./next-env.d.ts",
+    ".next/types/**/*.ts",
+    "components/Main",
+    "components/NotFound",
+    "store"
+  ],
   "exclude": ["./node_modules"]
 }
