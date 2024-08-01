@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/store/store';
+import { RootState } from '../../../../store/store';
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {
@@ -27,7 +27,7 @@ export default function Pagination({ toPrevPage, toNextPage, currentPage }: Pagi
         {'<'}
       </button>
       <div>{`${currentPage || '1'} / ${amountOfPages}`}</div>
-      <button type="button" disabled={right} onClick={toNextPage}>
+      <button type="button" disabled={right} onClick={() => toNextPage()}>
         {'>'}
       </button>
     </div>

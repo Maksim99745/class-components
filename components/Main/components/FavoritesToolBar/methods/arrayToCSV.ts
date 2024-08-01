@@ -1,4 +1,4 @@
-import { Character } from '@models/character';
+import { Character } from '../../../../models/character';
 
 export const arrayToCSV = (data: Character[]): string => {
   if (data.length === 0) {

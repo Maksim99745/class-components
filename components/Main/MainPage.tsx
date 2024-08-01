@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useGetCharacterByNameQuery, useGetCharactersByPageQuery } from '../../store/api/api';
 import { RootState } from '../../store/store';
 import CharacterDetails from './components/CharacterDetails/CharacterDetails';
+import useHandleDetails from './components/CharacterDetails/hooks/useHandleDetails';
 import { CharactersView } from './components/CharacterView/CharactersView';
 import ErrorButton from './components/ErrorButton/ErrorButton';
 import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
@@ -20,9 +20,7 @@ function MainPage() {
   const { currentPage, toPrevPage, toNextPage } = usePagination();
 
   const favorites = useSelector((state: RootState) => state.favorites);
-  const router = useRouter();
-  const { details } = router.query;
-
+  const { closeDetails } = useHandleDetails();
   const { updateCharacters } = useMainPageActions();
   const [query, setQuery] = useState(DEFAULT_SEARCH_VALUE);
   const { data: searchResult, isFetching: isSearching } = useGetCharacterByNameQuery(query);
@@ -37,12 +35,6 @@ function MainPage() {
   useEffect(() => {
     updateCharacters(pageData);
   }, [pageData]);
-
-  const closeDetails = () => {
-    if (details) {
-      router.push(`/?page=${details}`);
-    }
-  };
 
   return (
     <div className={styles.mainPage}>

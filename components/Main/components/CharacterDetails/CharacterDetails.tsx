@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 import { useGetCharacterByNameQuery } from '../../../../store/api/api';
-import { RootState } from '../../../../store/store';
 import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 import styles from './CharacterDetails.module.scss';
+import useHandleDetails from './hooks/useHandleDetails';
 
 export default function CharacterDetails() {
-  const page = useSelector((state: RootState) => state.currentPage);
   const router = useRouter();
+  const { closeDetails } = useHandleDetails();
   const { details } = router.query;
   const characterName = Array.isArray(details) ? details[0] : details || '';
   const { data: charactersData, isFetching: isSearching } = useGetCharacterByNameQuery(characterName || '');
@@ -24,7 +23,7 @@ export default function CharacterDetails() {
 
   return (
     <div className={styles.itemDetails} data-testid="item-details">
-      <button type="button" className={styles.closeButton} onClick={() => router.push(`/?page=${page}`)}>
+      <button type="button" className={styles.closeButton} onClick={() => closeDetails()}>
         X
       </button>
       {isSearching && <LoaderSpinner />}

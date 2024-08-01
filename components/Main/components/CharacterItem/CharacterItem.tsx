@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import { Character } from '../../../models/character';
 import { useMainPageActions } from '../../hooks/useMainPageActions';
+import useHandleDetails from '../CharacterDetails/hooks/useHandleDetails';
 import styles from './CharacterItem.module.scss';
 
 interface CharacterItemProps {
@@ -10,15 +10,14 @@ interface CharacterItemProps {
 }
 
 export default function CharacterItem({ character }: CharacterItemProps) {
-  const page = useSelector((state: RootState) => state.currentPage);
   const favorites = useSelector((state: RootState) => state.favorites);
   const { toggleFavorite } = useMainPageActions();
-  const router = useRouter();
+  const { openDetails } = useHandleDetails();
 
   const handleNavigation = () => {
-    const detailsUrl = `/details?name=${encodeURIComponent(character.name)}&page=${page}`;
-    router.push(detailsUrl);
+    openDetails(character.name);
   };
+
   return (
     <div className={styles.characterBox}>
       <button onClick={handleNavigation} type="button">
