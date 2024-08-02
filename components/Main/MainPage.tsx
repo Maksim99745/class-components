@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { CharactersData } from 'components/models/character';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useGetCharacterByNameQuery, useGetCharactersByPageQuery } from '../../store/api/api';
 import { RootState } from '../../store/store';
 import CharacterDetails from './components/CharacterDetails/CharacterDetails';
 import useHandleDetails from './components/CharacterDetails/hooks/useHandleDetails';
@@ -11,30 +12,22 @@ import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import Pagination from './components/Pagination/Pagination';
 import { Search } from './components/Search/Search';
 import { ThemeButton } from './components/ThemeButton/ThemeButton';
-import { DEFAULT_SEARCH_VALUE } from './hooks/useInitFromLocalStorage';
-import { useMainPageActions } from './hooks/useMainPageActions';
-import { usePagination } from './hooks/usePagination';
 import styles from './MainPage.module.scss';
 
-function MainPage() {
-  const { currentPage, toPrevPage, toNextPage } = usePagination();
-
+function MainPage({ charactersData }: { charactersData: CharactersData }) {
+  // const { currentPage, toPrevPage, toNextPage } = usePagination();
+  const router = useRouter();
   const favorites = useSelector((state: RootState) => state.favorites);
   const { closeDetails } = useHandleDetails();
-  const { updateCharacters } = useMainPageActions();
-  const [query, setQuery] = useState(DEFAULT_SEARCH_VALUE);
-  const { data: searchResult, isFetching: isSearching } = useGetCharacterByNameQuery(query);
-  const { data: pageData, isFetching: isPageLoading } = useGetCharactersByPageQuery(String(currentPage));
 
-  const isBusy = isSearching || isPageLoading;
+  const [isBusy, setIsBusy] = useState(false);
 
-  useEffect(() => {
-    updateCharacters(searchResult);
-  }, [searchResult]);
-
-  useEffect(() => {
-    updateCharacters(pageData);
-  }, [pageData]);
+  // useEffect(() => {
+  //   router.events.on('routeChangeStart', () => setIsBusy(true));
+  //   return () => {
+  //     router.events.on('routeChangeComplete', () => setIsBusy(false));
+  //   };
+  // }, [router.asPath]);
 
   return (
     <div className={styles.mainPage}>
@@ -44,19 +37,19 @@ function MainPage() {
         <ErrorButton />
       </div>
       <div onClick={() => closeDetails()} role="presentation">
-        <Search isBusy={isBusy} updateQuery={setQuery} />
+        <Search isBusy={isBusy} />
       </div>
       <div className={styles.resultsBlock} role="presentation">
         {!isBusy && (
           <div className={styles.resultsBlock} role="presentation">
-            <CharactersView />
+            <CharactersView charactersData={charactersData} />
           </div>
         )}
         <CharacterDetails />
       </div>
       {!isBusy && (
         <span onClick={() => closeDetails()} role="presentation">
-          <Pagination currentPage={currentPage[0]} toPrevPage={toPrevPage} toNextPage={toNextPage} />
+          <Pagination charactersData={charactersData} />
         </span>
       )}
       {isBusy && <LoaderSpinner />}

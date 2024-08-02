@@ -1,27 +1,19 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { useMainPageActions } from './useMainPageActions';
+// export const usePagination = () => {
+//   const router = useRouter();
+//   const { page = '1' } = router.query;
+//   const currentPage = typeof page === 'string' ? parseInt(page, 10) : parseInt(page[0], 10);
 
-export const usePagination = () => {
-  const currentPage = useSelector((state: RootState) => state.currentPage);
-  const router = useRouter();
-  const { updateCurrentPage } = useMainPageActions();
+//   const toPrevPage = useCallback(() => {
+//     const queryParams = { ...router.query };
+//     queryParams.page = String(currentPage);
+//     router.push({ pathname: router.pathname, query: queryParams });
+//   }, [currentPage, router]);
 
-  useEffect(() => {
-    const queryParams = { ...router.query };
-    queryParams.page = String(currentPage);
-    router.push({ pathname: router.pathname, query: queryParams });
-  }, [currentPage]);
+//   const toNextPage = useCallback(() => {
+//     const queryParams = { ...router.query };
+//     queryParams.page = String(currentPage + 1);
+//     router.push({ pathname: router.pathname, query: queryParams });
+//   }, [currentPage, router]);
 
-  const toPrevPage = () => {
-    updateCurrentPage(currentPage[0] - 1);
-  };
-
-  const toNextPage = () => {
-    updateCurrentPage(currentPage[0] + 1);
-  };
-
-  return { currentPage, toNextPage, toPrevPage };
-};
+//   return { currentPage, toNextPage, toPrevPage };
+// };

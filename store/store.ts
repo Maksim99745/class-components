@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
 import { api } from './api/api';
 import { reducer as charactersReducer } from './characters/characters.slice';
 import { reducer as currentPageReducer } from './currentPage/currentPage.slice';
