@@ -12,10 +12,11 @@ import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import Pagination from './components/Pagination/Pagination';
 import { Search } from './components/Search/Search';
 import { ThemeButton } from './components/ThemeButton/ThemeButton';
+import { usePagination } from './hooks/usePagination';
 import styles from './MainPage.module.scss';
 
 function MainPage({ charactersData }: { charactersData: CharactersData }) {
-  // const { currentPage, toPrevPage, toNextPage } = usePagination();
+  const { currentPage, toPrevPage, toNextPage } = usePagination();
   const router = useRouter();
   const favorites = useSelector((state: RootState) => state.favorites);
   const { closeDetails } = useHandleDetails();
@@ -49,7 +50,12 @@ function MainPage({ charactersData }: { charactersData: CharactersData }) {
       </div>
       {!isBusy && (
         <span onClick={() => closeDetails()} role="presentation">
-          <Pagination charactersData={charactersData} />
+          <Pagination
+            toNextPage={toNextPage}
+            currentPage={currentPage}
+            toPrevPage={toPrevPage}
+            charactersData={charactersData}
+          />
         </span>
       )}
       {isBusy && <LoaderSpinner />}
