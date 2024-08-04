@@ -13,7 +13,7 @@ export default function CharacterItem({ character }: CharacterItemProps) {
   const favorites = useSelector((state: RootState) => state.favorites);
   const { toggleFavorite } = useMainPageActions();
   const { openDetails } = useHandleDetails();
-
+  const isChecked = favorites.find((item) => item.name === character.name) !== undefined;
   const handleNavigation = () => {
     openDetails(character.name);
   };
@@ -30,7 +30,7 @@ export default function CharacterItem({ character }: CharacterItemProps) {
             id={character.name}
             style={{ cursor: 'pointer' }}
             name="favorite"
-            checked={favorites.includes(character)}
+            checked={isChecked}
             onChange={() => toggleFavorite(character)}
           />
           Favorite

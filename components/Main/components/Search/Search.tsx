@@ -3,22 +3,17 @@ import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './Search.module.scss';
 
-interface SearchProps {
-  isBusy: boolean;
-}
-
-export function Search({ isBusy }: SearchProps) {
-  const [query, setQuery] = useState(DEFAULT_SEARCH_VALUE);
+export function Search() {
+  const [inputValue, setInputValue] = useState(DEFAULT_SEARCH_VALUE);
   const router = useRouter();
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setQuery(event.target.value);
+    setInputValue(event.target.value);
   };
 
-  const handleSubmit = async (e: FormEvent): Promise<void> => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    const queryParams = { ...router.query };
-    queryParams.search = String(query);
-    queryParams.page = '1';
+    const queryParams = { ...router.query, search: inputValue, page: '1' };
     router.push({ pathname: router.pathname, query: queryParams });
   };
 
@@ -26,15 +21,13 @@ export function Search({ isBusy }: SearchProps) {
     <form onSubmit={handleSubmit}>
       <div className={styles.searchInputContainer}>
         <input
-          value={query || ''}
+          value={inputValue}
           placeholder="Enter your search query..."
           onChange={handleChange}
           type="search"
           className={styles.searchInput}
         />
-        <button type="submit" disabled={isBusy}>
-          Search
-        </button>
+        <button type="submit">Search</button>
       </div>
     </form>
   );

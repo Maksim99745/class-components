@@ -1,4 +1,4 @@
-.dark-theme {
+.darkTheme {
   position: relative;
   width: 100vw;
   background: rgb(69, 62, 65);
@@ -7,18 +7,18 @@
   color: white;
 }
 
-.dark-theme a {
+.darkTheme a {
   color: white;
 }
 
-.dark-theme div {
-  border-color: wheat;
+.darkTheme div {
+  border-color: rgb(255, 255, 255);
 }
 
-.dark-theme button {
+.darkTheme button {
   background-color: rgb(239, 209, 209);
 }
 
-.dark-theme input {
+.darkTheme input {
   background-color: rgb(239, 209, 209);
 }

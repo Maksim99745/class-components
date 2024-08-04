@@ -9,19 +9,20 @@ export const usePagination = () => {
   useEffect(() => {
     const queryParams = { ...router.query };
     queryParams.page = String(currentPage);
-    delete queryParams.details;
     router.push({ pathname: router.pathname, query: queryParams });
   }, [currentPage]);
 
   const toPrevPage = useCallback(() => {
     const queryParams = { ...router.query };
     queryParams.page = String(currentPage - 1);
+    delete queryParams.details;
     router.push({ pathname: router.pathname, query: queryParams });
   }, [currentPage, router]);
 
   const toNextPage = useCallback(() => {
     const queryParams = { ...router.query };
     queryParams.page = String(currentPage + 1);
+    delete queryParams.details;
     router.push({ pathname: router.pathname, query: queryParams });
   }, [currentPage, router]);
 
