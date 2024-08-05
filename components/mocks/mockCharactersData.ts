@@ -1,4 +1,4 @@
-import { Character, CharactersData } from '@models/character';
+import { Character, CharactersData } from '../models/character';
 
 export const mockCharactersData: CharactersData = {
   count: 1,
@@ -50,4 +50,16 @@ export const mockCharacterData: Character = {
   created: '2014-12-09T13:50:51.644000Z',
   edited: '2014-12-20T21:17:56.891000Z',
   url: 'https://swapi.dev/api/people/1/',
+};
+
+export const getCharactersPaginationMockData = (): CharactersData => {
+  const dataAmount = 11;
+  const elevenCharacters = new Array(dataAmount).fill(mockCharacterData);
+  const data = {
+    count: 11,
+    next: null,
+    previous: null,
+    results: elevenCharacters,
+  };
+  return data;
 };

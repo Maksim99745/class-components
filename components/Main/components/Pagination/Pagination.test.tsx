@@ -1,49 +1,56 @@
-import { mockCharacterData } from '@mocks/mockCharactersData';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { MemoryRouter, Route, Routes, useSearchParams } from 'react-router-dom';
-import configureMockStore from 'redux-mock-store';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import { getCharactersPaginationMockData } from '../../../mocks/mockCharactersData';
 import Pagination from './Pagination';
 
-const mockStore = configureMockStore();
-const FAKE_DATA_LENGTH = 12;
-const store = mockStore({
-  characters: [{ count: 50, results: new Array(FAKE_DATA_LENGTH).fill(mockCharacterData) }],
-  favorites: [mockCharacterData],
-});
+vi.mock('next/router', () => ({
+  useRouter: () => ({
+    query: {},
+    push: vi.fn(),
+    pathname: '/',
+  }),
+}));
+
+const toPrevPageMock = vi.fn();
+const toNextPageMock = vi.fn();
+
+vi.mock('../../hooks/usePagination', () => ({
+  __esModule: true,
+  default: () => ({
+    toPrevPage: toPrevPageMock,
+    toNextPage: toNextPageMock,
+  }),
+}));
 
 describe('Pagination Component', () => {
-  it('Component updates URL query parameter when page changes', async () => {
-    function TestComponent() {
-      const [searchParams, setSearchParams] = useSearchParams({ page: '1' });
-      const currentPage = Number(searchParams.get('page'));
-      const toPrevPage = () => {
-        setSearchParams({ page: String(currentPage - 1) });
-      };
-      const toNextPage = () => {
-        setSearchParams({ page: String(currentPage + 1) });
-      };
-
-      return (
-        <div>
-          <Pagination currentPage={currentPage} toPrevPage={toPrevPage} toNextPage={toNextPage} />
-          <div data-testid="page-indicator">{currentPage}</div>
-        </div>
-      );
-    }
-
+  it('Pagination toNextPage is working', async () => {
     render(
-      <MemoryRouter initialEntries={['/?page=1']}>
-        <Provider store={store}>
-          <Routes>
-            <Route path="/" element={<TestComponent />} />
-          </Routes>
-        </Provider>
-      </MemoryRouter>,
+      <Pagination
+        charactersData={getCharactersPaginationMockData()}
+        currentPage={1}
+        toPrevPage={toPrevPageMock}
+        toNextPage={toNextPageMock}
+      />,
     );
-    fireEvent.click(screen.getByText('>'));
-    await waitFor(() => {
-      expect(screen.getByTestId('page-indicator').textContent).toBe('2');
-    });
+
+    const nextButton = screen.getByRole('button', { name: '>' });
+
+    fireEvent.click(nextButton);
+    expect(toNextPageMock).toBeCalled();
+  });
+
+  it('Pagination toPreviousPage is working', async () => {
+    render(
+      <Pagination
+        charactersData={getCharactersPaginationMockData()}
+        currentPage={2}
+        toPrevPage={toPrevPageMock}
+        toNextPage={toNextPageMock}
+      />,
+    );
+
+    const prevButton = screen.getByRole('button', { name: '<' });
+    fireEvent.click(prevButton);
+    expect(toPrevPageMock).toBeCalled();
   });
 });

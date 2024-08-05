@@ -1,9 +1,8 @@
-import { mockCharacterData, mockCharactersData } from '@mocks/mockCharactersData';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
-import { vi } from 'vitest';
+import { assert, describe, expect, it, vi } from 'vitest';
+import { mockCharacterData, mockCharactersData } from '../../../mocks/mockCharactersData';
 import FavoritesToolBar from './FavoritesToolBar';
 
 const unselectAll = vi.fn();
@@ -29,11 +28,9 @@ const store = mockStore({ characters: [mockCharactersData], favorites: [mockChar
 describe('FavoritesToolBar Component', async () => {
   it('FavoritesToolBar renders the right amount of favorite characters', () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
-        <Provider store={store}>
-          <FavoritesToolBar />
-        </Provider>
-      </MemoryRouter>,
+      <Provider store={store}>
+        <FavoritesToolBar />
+      </Provider>,
     );
 
     const favoriteAmount = screen.getByText('Favorites amount: 1');
@@ -42,11 +39,9 @@ describe('FavoritesToolBar Component', async () => {
 
   it('dispatches unselectAll action when "Unselect all" button is clicked', async () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
-        <Provider store={store}>
-          <FavoritesToolBar />
-        </Provider>
-      </MemoryRouter>,
+      <Provider store={store}>
+        <FavoritesToolBar />
+      </Provider>,
     );
 
     const unselectAllButton = screen.getByText('Unselect all');
@@ -58,11 +53,9 @@ describe('FavoritesToolBar Component', async () => {
 
   it('check that click to download button casing download process', async () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
-        <Provider store={store}>
-          <FavoritesToolBar />
-        </Provider>
-      </MemoryRouter>,
+      <Provider store={store}>
+        <FavoritesToolBar />
+      </Provider>,
     );
 
     const downloadButton = screen.getByText('Download');

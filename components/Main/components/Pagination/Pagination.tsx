@@ -16,7 +16,7 @@ export default function Pagination({ charactersData, toNextPage, toPrevPage, cur
   const left = currentPage === 1;
   const amountOfPages = getPagesAmount(charactersData?.count ?? 1);
 
-  if (charactersData?.count <= 1) {
+  if (charactersData?.count < 1) {
     return null;
   }
 

@@ -1,7 +1,8 @@
-import { DEFAULT_SEARCH_VALUE } from 'components/Main/hooks/useInitFromLocalStorage';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './Search.module.scss';
+
+export const DEFAULT_SEARCH_VALUE = '';
 
 export function Search() {
   const [inputValue, setInputValue] = useState(DEFAULT_SEARCH_VALUE);

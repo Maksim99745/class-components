@@ -1,24 +1,14 @@
-import ErrorBoundary from '@core/ErrorBoundary/ErrorBoundary';
-import { mockCharacterData, mockCharactersData } from '@mocks/mockCharactersData';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
-import configureMockStore from 'redux-mock-store';
+import { assert, describe, it } from 'vitest';
+import ErrorBoundary from '../../../core/ErrorBoundary/ErrorBoundary';
 import ErrorButton from './ErrorButton';
-
-const mockStore = configureMockStore();
-const store = mockStore({ characters: [mockCharactersData], favorites: [mockCharacterData] });
 
 describe('ErrorButtonComponent', async () => {
   it('Click to ErrorButton is casing Error', () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
-        <Provider store={store}>
-          <ErrorBoundary>
-            <ErrorButton />
-          </ErrorBoundary>
-        </Provider>
-      </MemoryRouter>,
+      <ErrorBoundary>
+        <ErrorButton />
+      </ErrorBoundary>,
     );
 
     const ErrorButtonHTML = screen.getByText('Error button');

@@ -1,20 +1,12 @@
-import { router } from '@core/routing/router';
-import { store } from '@store/store';
-import { render, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import NotFoundPage from './NotFound';
 
 describe('NotFound Component', () => {
-  it('should render NotFoundPage when untracked path is received', async () => {
-    render(
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>,
-    );
+  it('NotFound page renders as well', async () => {
+    render(<NotFoundPage />);
 
-    router.navigate('/4dd04');
-    await waitFor(() => {
-      assert.exists(screen.getByText('Go back to Home page'));
-    });
+    const notFoundText = screen.getByText('404 - Page not found');
+    expect(notFoundText).toBeTruthy();
   });
 });

@@ -1,4 +1,6 @@
 import { CharactersData } from 'components/models/character';
+import Router from 'next/router';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import CharacterDetails from './components/CharacterDetails/CharacterDetails';
@@ -6,6 +8,7 @@ import useHandleDetails from './components/CharacterDetails/hooks/useHandleDetai
 import { CharactersView } from './components/CharacterView/CharactersView';
 import ErrorButton from './components/ErrorButton/ErrorButton';
 import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
+import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import Pagination from './components/Pagination/Pagination';
 import { Search } from './components/Search/Search';
 import { ThemeButton } from './components/ThemeButton/ThemeButton';
@@ -22,6 +25,24 @@ function MainPage({ charactersData, characterDetails }: MainPageProps) {
   const favorites = useSelector((state: RootState) => state.favorites);
   const { closeDetails } = useHandleDetails();
 
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const start = () => {
+      setLoading(true);
+    };
+    const end = () => {
+      setLoading(false);
+    };
+    Router.events.on('routeChangeStart', start);
+    Router.events.on('routeChangeComplete', end);
+    Router.events.on('routeChangeError', end);
+    return () => {
+      Router.events.off('routeChangeStart', start);
+      Router.events.off('routeChangeComplete', end);
+      Router.events.off('routeChangeError', end);
+    };
+  }, []);
+
   return (
     <div className={styles.mainPage}>
       <ThemeButton />
@@ -33,7 +54,8 @@ function MainPage({ charactersData, characterDetails }: MainPageProps) {
         <Search />
       </div>
       <div className={styles.resultsBlock} role="presentation">
-        <CharactersView charactersData={charactersData} />
+        {!loading && <CharactersView charactersData={charactersData} />}
+        {loading && <LoaderSpinner />}
         <CharacterDetails characterDetails={characterDetails} />
       </div>
       <span onClick={() => closeDetails()} role="presentation">

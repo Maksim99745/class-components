@@ -2,7 +2,9 @@ import { CharactersData } from 'components/models/character';
 import CharacterItem from '../CharacterItem/CharacterItem';
 import styles from './CharactersView.module.scss';
 
-export function CharactersView({ charactersData }: { charactersData: CharactersData }) {
+type CharactersViewProps = { charactersData: CharactersData };
+
+export function CharactersView({ charactersData }: CharactersViewProps) {
   return (
     <div className={styles.itemsBlock}>
       {charactersData?.results?.map((character) => (

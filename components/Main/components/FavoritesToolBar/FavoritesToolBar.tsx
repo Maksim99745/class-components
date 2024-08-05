@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/store/store';
+import { RootState } from '../../../../store/store';
 import { useMainPageActions } from '../../hooks/useMainPageActions';
 import styles from './FavoritesToolBar.module.scss';
 import { arrayToCSV } from './methods/arrayToCSV';

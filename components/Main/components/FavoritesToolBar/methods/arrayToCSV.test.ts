@@ -1,5 +1,5 @@
-import { mockCharacterData } from '@mocks/mockCharactersData';
 import { describe, expect, it } from 'vitest';
+import { mockCharacterData } from '../../../../mocks/mockCharactersData';
 import { arrayToCSV } from './arrayToCSV';
 
 describe('arrayToCSV function', () => {

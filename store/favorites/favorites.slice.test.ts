@@ -1,5 +1,6 @@
-import { mockCharacterData } from '@mocks/mockCharactersData';
-import { Character } from '@models/character';
+import { describe, expect, it } from 'vitest';
+import { mockCharacterData } from '../../components/mocks/mockCharactersData';
+import { Character } from '../../components/models/character';
 import { actions, reducer } from './favorites.slice';
 
 describe('favoritesSlice', () => {
