@@ -1,3 +1,5 @@
+'use client';
+
 import { useTheme, useThemeUpdate } from '../../../core/themes/themeHooks';
 
 export function ThemeButton() {

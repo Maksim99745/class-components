@@ -35,14 +35,14 @@
   "include": [
     "src/**/*",
     "components/**/*",
-    "pages/**/*",
     "tests/setup.ts",
     "./dist/types/**/*.ts",
     "./next-env.d.ts",
     ".next/types/**/*.ts",
     "components/Main",
     "components/NotFound",
-    "store"
+    "store",
+    "app/**/*"
   ],
   "exclude": ["./node_modules"]
 }

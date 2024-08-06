@@ -1,10 +1,14 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import useHandleDetails from '../CharacterDetails/hooks/useHandleDetails';
 import styles from './Search.module.scss';
 
 export const DEFAULT_SEARCH_VALUE = '';
 
 export function Search() {
+  const { closeDetails } = useHandleDetails();
   const [inputValue, setInputValue] = useState(DEFAULT_SEARCH_VALUE);
   const router = useRouter();
 
@@ -14,13 +18,12 @@ export function Search() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    const queryParams = { ...router.query, search: inputValue, page: '1' };
-    router.push({ pathname: router.pathname, query: queryParams });
+    router.push(`/?search=${inputValue}`);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles.searchInputContainer}>
+      <div className={styles.searchInputContainer} onClick={() => closeDetails()} role="presentation">
         <input
           value={inputValue}
           placeholder="Enter your search query..."

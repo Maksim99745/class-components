@@ -1,19 +1,16 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useRouter } from 'next/navigation';
 
 export default function useHandleDetails() {
   const router = useRouter();
 
   function closeDetails() {
-    const queryParams = { ...router.query };
-    delete queryParams.details;
-    router.push({ pathname: router.pathname, query: queryParams });
+    router.push(`/`);
   }
 
   const openDetails = (characterName: string) => {
-    const queryParams = { ...router.query };
-    queryParams.details = characterName;
-
-    router.push({ pathname: router.pathname, query: queryParams });
+    router.push(`/?details=${characterName}`);
   };
 
   return { closeDetails, openDetails };

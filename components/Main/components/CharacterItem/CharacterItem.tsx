@@ -1,3 +1,5 @@
+'use client';
+
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import { Character } from '../../../models/character';
@@ -14,6 +16,7 @@ export default function CharacterItem({ character }: CharacterItemProps) {
   const { toggleFavorite } = useMainPageActions();
   const { openDetails } = useHandleDetails();
   const isChecked = favorites.find((item) => item.name === character.name) !== undefined;
+
   const handleNavigation = () => {
     openDetails(character.name);
   };

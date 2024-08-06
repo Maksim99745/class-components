@@ -1,4 +1,4 @@
-// TestErrorBoundary.tsx
+// components/ErrorBoundary.tsx
 import React, { ReactNode } from 'react';
 
 interface ErrorBoundaryState {

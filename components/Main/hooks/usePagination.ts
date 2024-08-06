@@ -1,30 +1,19 @@
-import { useRouter } from 'next/router';
-import { useCallback, useEffect } from 'react';
+'use client';
+
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback } from 'react';
 
 export const usePagination = () => {
+  const searchParams = useSearchParams();
+  const currentPage = searchParams?.get('page') || '1';
   const router = useRouter();
-  const { page = '1' } = router.query;
-  const currentPage = typeof page === 'string' ? parseInt(page, 10) : parseInt(page[0], 10);
-
-  useEffect(() => {
-    const queryParams = { ...router.query };
-    queryParams.page = String(currentPage);
-    router.push({ pathname: router.pathname, query: queryParams });
-  }, [currentPage]);
 
   const toPrevPage = useCallback(() => {
-    const queryParams = { ...router.query };
-    queryParams.page = String(currentPage - 1);
-    delete queryParams.details;
-    router.push({ pathname: router.pathname, query: queryParams });
+    router.push(`/?page=${Number(currentPage) - 1}`);
   }, [currentPage, router]);
 
   const toNextPage = useCallback(() => {
-    const queryParams = { ...router.query };
-    queryParams.page = String(currentPage + 1);
-    delete queryParams.details;
-
-    router.push({ pathname: router.pathname, query: queryParams });
+    router.push(`/?page=${Number(currentPage) + 1}`);
   }, [currentPage, router]);
 
   return { currentPage, toNextPage, toPrevPage };

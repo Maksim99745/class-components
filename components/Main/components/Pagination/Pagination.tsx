@@ -1,19 +1,21 @@
+'use client';
+
+import { usePagination } from 'components/Main/hooks/usePagination';
 import { CharactersData } from 'components/models/character';
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {
-  toPrevPage: () => void;
-  toNextPage: () => void;
-  currentPage: number;
   charactersData: CharactersData;
 }
 
 const ITEMS_PER_PAGE = 10;
 const getPagesAmount = (itemAmount: number): number => Math.ceil(itemAmount / ITEMS_PER_PAGE);
 
-export default function Pagination({ charactersData, toNextPage, toPrevPage, currentPage }: PaginationProps) {
-  const right = currentPage === getPagesAmount(charactersData?.count ?? 1);
-  const left = currentPage === 1;
+export default function Pagination({ charactersData }: PaginationProps) {
+  const { currentPage, toPrevPage, toNextPage } = usePagination();
+  const page = parseInt(currentPage, 10);
+  const right = page === getPagesAmount(charactersData?.count ?? 1);
+  const left = page === 1;
   const amountOfPages = getPagesAmount(charactersData?.count ?? 1);
 
   if (charactersData?.count < 1) {

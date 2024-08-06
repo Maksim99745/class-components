@@ -1,3 +1,5 @@
+'use client';
+
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import { useMainPageActions } from '../../hooks/useMainPageActions';
@@ -7,6 +9,10 @@ import { arrayToCSV } from './methods/arrayToCSV';
 export default function FavoritesToolBar() {
   const favorites = useSelector((state: RootState) => state.favorites);
   const { unselectAll } = useMainPageActions();
+
+  if (favorites.length === 0) {
+    return null;
+  }
 
   const handleDownload = () => {
     const csvData = arrayToCSV(favorites);
