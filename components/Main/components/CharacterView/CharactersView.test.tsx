@@ -8,13 +8,13 @@ import { CharactersView } from './CharactersView';
 
 const mockStore = configureMockStore();
 const pushMock = vi.fn();
+const searchParams = new URLSearchParams({ details: 'some-information', page: '1' });
 
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
-    query: {},
     push: pushMock,
-    pathname: '/',
   }),
+  useSearchParams: () => searchParams,
 }));
 
 describe('CharactersView Component', () => {

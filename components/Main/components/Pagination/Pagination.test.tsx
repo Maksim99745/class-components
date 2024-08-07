@@ -3,12 +3,12 @@ import { describe, expect, it, vi } from 'vitest';
 import { getCharactersPaginationMockData } from '../../../mocks/mockCharactersData';
 import Pagination from './Pagination';
 
-vi.mock('next/router', () => ({
+const searchParams = new URLSearchParams({ details: 'some-information', page: '1' });
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
-    query: {},
     push: vi.fn(),
-    pathname: '/',
   }),
+  useSearchParams: () => searchParams,
 }));
 
 const toPrevPageMock = vi.fn();
@@ -24,14 +24,7 @@ vi.mock('../../hooks/usePagination', () => ({
 
 describe('Pagination Component', () => {
   it('Pagination toNextPage is working', async () => {
-    render(
-      <Pagination
-        charactersData={getCharactersPaginationMockData()}
-        currentPage={1}
-        toPrevPage={toPrevPageMock}
-        toNextPage={toNextPageMock}
-      />,
-    );
+    render(<Pagination charactersData={getCharactersPaginationMockData()} />);
 
     const nextButton = screen.getByRole('button', { name: '>' });
 
@@ -40,14 +33,7 @@ describe('Pagination Component', () => {
   });
 
   it('Pagination toPreviousPage is working', async () => {
-    render(
-      <Pagination
-        charactersData={getCharactersPaginationMockData()}
-        currentPage={2}
-        toPrevPage={toPrevPageMock}
-        toNextPage={toNextPageMock}
-      />,
-    );
+    render(<Pagination charactersData={getCharactersPaginationMockData()} />);
 
     const prevButton = screen.getByRole('button', { name: '<' });
     fireEvent.click(prevButton);

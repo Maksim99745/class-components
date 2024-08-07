@@ -8,20 +8,20 @@ import MainPage from './MainPage';
 
 const mockStore = configureMockStore();
 const pushMock = vi.fn();
+const searchParamsMock = new URLSearchParams({ details: 'some-detail', page: '1' });
 
-vi.mock('next/router', async (importOriginal) => {
+vi.mock('next/navigation', async (importOriginal) => {
   const actual = (await importOriginal()) as typeof Router;
   return {
     ...actual,
     useRouter: () => ({
-      query: {},
       push: pushMock,
-      pathname: '/',
     }),
     events: {
       on: vi.fn(),
       off: vi.fn(),
     },
+    useSearchParams: () => searchParamsMock,
   };
 });
 

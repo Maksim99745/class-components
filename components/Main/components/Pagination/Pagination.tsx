@@ -1,5 +1,5 @@
-import { usePagination } from 'components/Main/hooks/usePagination';
-import { CharactersData } from 'components/models/character';
+import { CharactersData } from '../../../models/character';
+import usePagination from '../../hooks/usePagination';
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {

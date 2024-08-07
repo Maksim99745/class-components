@@ -7,13 +7,13 @@ import CharacterItem from './CharacterItem';
 
 const characterData = mockCharactersData.results[0];
 const pushMock = vi.fn();
+const searchParams = new URLSearchParams({ details: 'some-information', page: '1' });
 
-vi.mock('next/router', () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
-    query: {},
     push: pushMock,
-    pathname: '/',
   }),
+  useSearchParams: () => searchParams,
 }));
 
 describe('CharacterItem Component', () => {
@@ -37,7 +37,7 @@ describe('CharacterItem Component', () => {
 
     const characterCard = screen.getByText('Name: Luke Skywalker');
     fireEvent.click(characterCard);
-    expect(pushMock).toHaveBeenCalledWith({ pathname: '/', query: { details: 'Luke Skywalker' } });
+    expect(pushMock).toHaveBeenCalledWith('/?page=1&details=Luke Skywalker');
   });
 
   it('Check that clicking triggers an additional API call to fetch detailed information', async () => {

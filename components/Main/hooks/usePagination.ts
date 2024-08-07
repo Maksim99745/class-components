@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
 
-export const usePagination = () => {
+const usePagination = () => {
   const searchParams = useSearchParams();
   const currentPage = searchParams?.get('page') || '1';
   const router = useRouter();
@@ -18,3 +18,4 @@ export const usePagination = () => {
 
   return { currentPage, toNextPage, toPrevPage };
 };
+export default usePagination;

@@ -1,6 +1,6 @@
-import { ThemeProvider } from 'components/core/themes/ThemeProvider';
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
+import { ThemeProvider } from '../components/core/themes/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'My App',

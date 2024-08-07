@@ -1,17 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import LoaderSpinner from '../components/Main/components/LoaderSpinner/LoaderSpinner';
-import LayoutPage from './Layosdut';
+import RootLayout from './layout';
 
 describe('LayoutPage Component', () => {
-  it('LayoutPage is rendering as well', () => {
+  it('LayoutPage is rendering as well with it"s children', () => {
     render(
-      <LayoutPage>
+      <RootLayout>
         <LoaderSpinner />
-      </LayoutPage>,
+      </RootLayout>,
     );
 
-    const container = screen.getByTestId('theme-container');
-    expect(container).toBeTruthy();
+    const loader = screen.getByTestId('loader');
+    expect(loader).toBeTruthy();
   });
 });

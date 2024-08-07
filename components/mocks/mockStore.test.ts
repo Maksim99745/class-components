@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { mockCharacterData, mockCharactersData } from './mockCharactersData';
 import { testingMockStore } from './mockStore';
 

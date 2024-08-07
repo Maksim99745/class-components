@@ -6,12 +6,13 @@ import { Search } from './Search';
 
 const pushMock = vi.fn();
 
-vi.mock('next/router', () => ({
+const searchParamsMock = new URLSearchParams({ details: 'some-detail', page: '1' });
+
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
-    query: {},
     push: pushMock,
-    pathname: '/',
   }),
+  useSearchParams: () => searchParamsMock,
 }));
 
 describe('Search component', () => {
@@ -28,6 +29,6 @@ describe('Search component', () => {
     fireEvent.change(input, { target: { value: 'Luke' } });
     fireEvent.click(button);
 
-    expect(pushMock).toHaveBeenCalledWith({ pathname: '/', query: { page: '1', search: 'Luke' } });
+    expect(pushMock).toHaveBeenCalledWith('/?search=Luke');
   });
 });
