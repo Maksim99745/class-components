@@ -1,16 +1,14 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import useHandleDetails from '../CharacterDetails/hooks/useHandleDetails';
 import styles from './Search.module.scss';
+import useSearch from './hooks/useSearch';
 
 export const DEFAULT_SEARCH_VALUE = '';
 
 export function Search() {
   const { closeDetails } = useHandleDetails();
+  const { handleSearch } = useSearch();
   const [inputValue, setInputValue] = useState(DEFAULT_SEARCH_VALUE);
-  const router = useRouter();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setInputValue(event.target.value);
@@ -18,7 +16,7 @@ export function Search() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    router.push(`/?search=${inputValue}`);
+    handleSearch(inputValue);
   };
 
   return (

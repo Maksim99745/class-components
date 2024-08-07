@@ -3,7 +3,6 @@ import CharacterDetails from './components/CharacterDetails/CharacterDetails';
 import { CharactersView } from './components/CharacterView/CharactersView';
 import ErrorButton from './components/ErrorButton/ErrorButton';
 import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
-import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import Pagination from './components/Pagination/Pagination';
 import { Search } from './components/Search/Search';
 import { ThemeButton } from './components/ThemeButton/ThemeButton';
@@ -15,8 +14,6 @@ type MainPageProps = {
 };
 
 function MainPage({ charactersData, characterDetails }: MainPageProps) {
-  const loading = false;
-
   return (
     <div className={styles.mainPage}>
       <ThemeButton />
@@ -28,8 +25,7 @@ function MainPage({ charactersData, characterDetails }: MainPageProps) {
         <Search />
       </div>
       <div className={styles.resultsBlock}>
-        {!loading && <CharactersView charactersData={charactersData} />}
-        {loading && <LoaderSpinner />}
+        <CharactersView charactersData={charactersData} />
         <CharacterDetails characterDetails={characterDetails} />
       </div>
       <span role="presentation">

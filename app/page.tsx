@@ -1,7 +1,7 @@
+import ErrorBoundary from 'components/core/ErrorBoundary/ErrorBoundary';
 import '../components/core/themes/Theme.module.scss';
 import HomePage from './home-page';
 import './index.scss';
-import RootLayout from './layout';
 
 export const getCharactersData = async ({
   searchParams,
@@ -38,11 +38,11 @@ export default async function Page({
 }) {
   const charactersData = await getCharactersData({ searchParams });
   return (
-    <RootLayout>
+    <ErrorBoundary>
       <HomePage
         characterDetails={charactersData.props.characterDetails}
         charactersData={charactersData.props.charactersData}
       />
-    </RootLayout>
+    </ErrorBoundary>
   );
 }

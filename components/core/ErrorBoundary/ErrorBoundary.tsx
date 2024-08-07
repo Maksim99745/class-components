@@ -1,4 +1,5 @@
-// components/ErrorBoundary.tsx
+'use client';
+
 import React, { ReactNode } from 'react';
 
 interface ErrorBoundaryState {
@@ -37,6 +38,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
         <div>
           <h1>Something went wrong.</h1>
           <h3>Error: {error?.message}</h3>
+          <a href="/">Get back to the home page</a>
         </div>
       );
     }

@@ -1,5 +1,3 @@
-'use client';
-
 import { CharactersData } from 'components/models/character';
 import styles from './CharacterDetails.module.scss';
 import useHandleDetails from './hooks/useHandleDetails';

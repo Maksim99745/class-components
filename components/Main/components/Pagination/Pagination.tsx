@@ -1,5 +1,3 @@
-'use client';
-
 import { usePagination } from 'components/Main/hooks/usePagination';
 import { CharactersData } from 'components/models/character';
 import styles from './Pagination.module.scss';
