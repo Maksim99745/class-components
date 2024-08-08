@@ -6,7 +6,6 @@ import { RootState } from '../../store/store';
 import CharacterDetails from './components/CharacterDetails/CharacterDetails';
 import useHandleDetails from './components/CharacterDetails/hooks/useHandleDetails';
 import { CharactersView } from './components/CharacterView/CharactersView';
-import ErrorButton from './components/ErrorButton/ErrorButton';
 import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
 import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import Pagination from './components/Pagination/Pagination';
@@ -48,7 +47,6 @@ function MainPage({ charactersData, characterDetails }: MainPageProps) {
       <ThemeButton />
       <div className={styles.nameContainer}>
         <h3>Find your favorite The Star Wars character!</h3>
-        <ErrorButton />
       </div>
       <div onClick={() => closeDetails()} role="presentation">
         <Search />
