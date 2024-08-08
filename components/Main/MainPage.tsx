@@ -1,7 +1,6 @@
 import { CharactersData } from 'components/models/character';
 import CharacterDetails from './components/CharacterDetails/CharacterDetails';
 import { CharactersView } from './components/CharacterView/CharactersView';
-import ErrorButton from './components/ErrorButton/ErrorButton';
 import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
 import Pagination from './components/Pagination/Pagination';
 import { Search } from './components/Search/Search';
@@ -19,7 +18,6 @@ function MainPage({ charactersData, characterDetails }: MainPageProps) {
       <ThemeButton />
       <div className={styles.nameContainer}>
         <h3>Find your favorite The Star Wars character!</h3>
-        <ErrorButton />
       </div>
       <div>
         <Search />
