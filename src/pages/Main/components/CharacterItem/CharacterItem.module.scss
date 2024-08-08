@@ -1,4 +1,4 @@
-.character-box {
+.characterBox {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,7 +10,7 @@
   border-radius: 5px;
 }
 
-.character-name {
+.characterName {
   align-self: center;
   font-size: 14px;
 }

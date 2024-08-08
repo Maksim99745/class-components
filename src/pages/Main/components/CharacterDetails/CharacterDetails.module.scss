@@ -1,4 +1,4 @@
-.item-details {
+.itemDetails {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -13,13 +13,13 @@
   font-size: 15px;
 }
 
-.item-details button {
+.itemDetails button {
   width: 22px;
   height: 22px;
   font-size: 11px;
 }
 
-.close-button {
+.closeButton {
   position: absolute;
   top: 2%;
   left: 85%;

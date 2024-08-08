@@ -1,4 +1,4 @@
-.main-page {
+.mainPage {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.name-container {
+.nameContainer {
   display: flex;
   width: fit-content;
   justify-content: space-between;
@@ -15,12 +15,12 @@
   gap: 10px;
 }
 
-.results-block {
+.resultsBlock {
   display: flex;
   gap: 10px;
 }
 
-.error-button {
+.errorButton {
   width: fit-content;
   height: 20px;
   font-size: small;
@@ -28,7 +28,7 @@
   color: red;
 }
 
-.item-details {
+.itemDetails {
   display: flex;
   flex-direction: column;
   align-items: start;

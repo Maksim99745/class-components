@@ -1,11 +1,9 @@
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
-import "./tailwind.css";
+import { ThemeProvider } from '@core/themes/ThemeProvider';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { store } from '@store/store';
+import { Provider } from 'react-redux';
+import './App.css';
+import './index.scss';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,9 +15,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <Provider store={store}>
+          <ThemeProvider>
+            {children}
+            <ScrollRestoration />
+            <Scripts />
+          </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );

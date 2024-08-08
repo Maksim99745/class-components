@@ -1,15 +1,19 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from '@remix-run/react';
 import { useGetCharacterByNameQuery } from '../../../../store/api/api';
 import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 import styles from './CharacterDetails.module.scss';
 
-export default function CharacterDetails() {
-  const { characterName } = useParams();
+type CharacterDetailsProps = {
+  detailedCharacterName: string;
+};
+
+export default function CharacterDetails({ detailedCharacterName }: CharacterDetailsProps) {
   const [searchParams] = useSearchParams();
   const page = searchParams.get('page') || 1;
+
   const navigate = useNavigate();
 
-  const { data: charactersData, isFetching: isSearching } = useGetCharacterByNameQuery(characterName ?? '');
+  const { data: charactersData, isFetching: isSearching } = useGetCharacterByNameQuery(detailedCharacterName || '');
 
   if (!charactersData) {
     return <div>Character details is not found</div>;

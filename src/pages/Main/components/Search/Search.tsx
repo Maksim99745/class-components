@@ -1,6 +1,6 @@
-import { useInitFromLocalStorage } from '@pages/Main/hooks/useInitFromLocalStorage';
-import { ChangeEvent, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { DEFAULT_SEARCH_VALUE } from '@pages/Main/MainPage';
+import { useNavigate } from '@remix-run/react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './Search.module.scss';
 
 interface SearchProps {
@@ -9,7 +9,7 @@ interface SearchProps {
 }
 
 export function Search({ updateQuery, isBusy }: SearchProps) {
-  const [query, setQuery] = useInitFromLocalStorage('class-component');
+  const [query, setQuery] = useState(DEFAULT_SEARCH_VALUE);
   const navigate = useNavigate();
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setQuery(event.target.value);
