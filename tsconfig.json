@@ -27,7 +27,7 @@
       "@mocks/*": ["./src/mocks/*"]
     }
   },
-  "include": ["src", "tests/setup.ts"],
+  "include": ["src", "tests/setup.ts", "src/core", "apppp"],
   "references": [
     {
       "path": "./tsconfig.node.json"

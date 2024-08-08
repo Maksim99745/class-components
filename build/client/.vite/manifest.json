@@ -1,0 +1,98 @@
+{
+  "_@web3-storage-l0sNRNKZ.js": {
+    "file": "assets/@web3-storage-l0sNRNKZ.js",
+    "name": "@web3-storage"
+  },
+  "_cookie-CqkleIqs.js": {
+    "file": "assets/cookie-CqkleIqs.js",
+    "name": "cookie"
+  },
+  "_react-CBuy_PC2.js": {
+    "file": "assets/react-CBuy_PC2.js",
+    "name": "react",
+    "imports": [
+      "_cookie-CqkleIqs.js"
+    ]
+  },
+  "_react-dom-Bi1Py4uK.js": {
+    "file": "assets/react-dom-Bi1Py4uK.js",
+    "name": "react-dom",
+    "imports": [
+      "_cookie-CqkleIqs.js",
+      "_react-CBuy_PC2.js",
+      "_scheduler-CzFDRTuY.js"
+    ]
+  },
+  "_react-router-JgQApifB.js": {
+    "file": "assets/react-router-JgQApifB.js",
+    "name": "react-router",
+    "imports": [
+      "_react-CBuy_PC2.js",
+      "node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx"
+    ]
+  },
+  "_react-router-dom-BuEvQHye.js": {
+    "file": "assets/react-router-dom-BuEvQHye.js",
+    "name": "react-router-dom",
+    "imports": [
+      "_react-CBuy_PC2.js",
+      "_react-dom-Bi1Py4uK.js",
+      "_react-router-JgQApifB.js",
+      "node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx"
+    ]
+  },
+  "_scheduler-CzFDRTuY.js": {
+    "file": "assets/scheduler-CzFDRTuY.js",
+    "name": "scheduler"
+  },
+  "_set-cookie-parser-l0sNRNKZ.js": {
+    "file": "assets/set-cookie-parser-l0sNRNKZ.js",
+    "name": "set-cookie-parser"
+  },
+  "_turbo-stream-DvGhWBg0.js": {
+    "file": "assets/turbo-stream-DvGhWBg0.js",
+    "name": "turbo-stream"
+  },
+  "app/root.tsx?__remix-build-client-route": {
+    "file": "assets/root-DbHbR4oq.js",
+    "name": "root",
+    "src": "app/root.tsx?__remix-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_react-CBuy_PC2.js",
+      "node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx",
+      "_react-router-JgQApifB.js",
+      "_cookie-CqkleIqs.js",
+      "_react-dom-Bi1Py4uK.js",
+      "_scheduler-CzFDRTuY.js",
+      "_react-router-dom-BuEvQHye.js",
+      "_turbo-stream-DvGhWBg0.js"
+    ]
+  },
+  "app/routes/_index.tsx?__remix-build-client-route": {
+    "file": "assets/_index-DX_EM3Tr.js",
+    "name": "_index",
+    "src": "app/routes/_index.tsx?__remix-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_react-CBuy_PC2.js",
+      "_cookie-CqkleIqs.js"
+    ]
+  },
+  "node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx": {
+    "file": "assets/entry.client-DMbdhTsL.js",
+    "name": "entry.client",
+    "src": "node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx",
+    "isEntry": true,
+    "imports": [
+      "_react-CBuy_PC2.js",
+      "_react-dom-Bi1Py4uK.js",
+      "_react-router-JgQApifB.js",
+      "_react-router-dom-BuEvQHye.js",
+      "_turbo-stream-DvGhWBg0.js",
+      "_cookie-CqkleIqs.js",
+      "_scheduler-CzFDRTuY.js",
+      "node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx"
+    ]
+  }
+}
