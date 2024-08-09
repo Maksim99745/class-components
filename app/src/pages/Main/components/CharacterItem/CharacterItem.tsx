@@ -14,6 +14,7 @@ export default function CharacterItem({ character }: CharacterItemProps) {
   const page = searchParams.get('page') || 1;
   const favorites = useSelector((state: RootState) => state.favorites);
   const { toggleFavorite } = useMainPageActions();
+  const isChecked = favorites.find((item) => item.name === character.name) !== undefined;
 
   return (
     <div className={styles.characterBox}>
@@ -27,7 +28,7 @@ export default function CharacterItem({ character }: CharacterItemProps) {
           id={character.name}
           style={{ cursor: 'pointer' }}
           name="favorite"
-          checked={favorites.includes(character)}
+          checked={isChecked}
           onChange={() => toggleFavorite(character)}
         />
         Favorite

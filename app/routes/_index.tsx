@@ -1,16 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
+import type { LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { useTheme } from 'app/src/core/themes/themeHooks';
 import MainPage from 'app/src/pages/Main/MainPage';
 import '../App.css';
 import '../index.scss';
 import styles from '../src/core/themes/Theme.module.scss';
-
-export const meta: MetaFunction = () => [
-  { title: 'Star wars' },
-  { name: 'description', content: 'Welcome to Star wars world!' },
-];
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
