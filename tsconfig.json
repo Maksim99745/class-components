@@ -15,19 +15,19 @@
     "baseUrl": "./",
     "types": ["vitest/globals"],
     "paths": {
-      "@core/*": ["./src/core/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@components/*": ["./src/components/*"],
-      "@models/*": ["./src/models/*"],
-      "@enums/*": ["./src/enums/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@test/*": ["./src/test/*"],
-      "@store/*": ["./src/store/*"],
-      "@mocks/*": ["./src/mocks/*"]
+      "@core/*": ["app/src/core/*"],
+      "@pages/*": ["app/src/pages/*"],
+      "@components/*": ["app/src/components/*"],
+      "@models/*": ["app/src/models/*"],
+      "@enums/*": ["app/src/enums/*"],
+      "@constants/*": ["app/src/constants/*"],
+      "@utils/*": ["app/src/utils/*"],
+      "@test/*": ["app/src/test/*"],
+      "@store/*": ["app/src/store/*"],
+      "@mocks/*": ["app/src/mocks/*"]
     }
   },
-  "include": ["src", "tests/setup.ts", "src/core", "app", "app/routes/home.tsx"],
+  "include": ["app/src", "tests/setup.ts", "app/src/core", "app", "app/routes/home.tsx"],
   "references": [
     {
       "path": "./tsconfig.node.json"

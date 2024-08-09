@@ -1,1 +1,0 @@
-import{j as t}from"./react-CBuy_PC2.js";import"./cookie-CqkleIqs.js";const o=()=>[{title:"Star wars"},{name:"description",content:"Find your favorite Star wars character"}];function a(){return t.jsx("h1",{children:"Welcome to the Homepage"})}export{a as default,o as meta};
