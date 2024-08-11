@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "noEmit": true,
     "baseUrl": "./",
-    "types": ["vitest/globals"],
+    "types": ["@remix-run/node", "vite/client"],
     "paths": {
       "@core/*": ["app/src/core/*"],
       "@pages/*": ["app/src/pages/*"],

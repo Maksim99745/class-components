@@ -34,10 +34,12 @@ export default function Index() {
   const isDarkTheme = useTheme();
   const data = useLoaderData<typeof loader>();
   return (
-    <div className={isDarkTheme ? styles.darkTheme : undefined} data-testid="theme-container">
-      <div className="App">
-        <MainPage charactersData={data.charactersData} characterDetails={data.characterDetails} />;
+    <main>
+      <div className={isDarkTheme ? styles.darkTheme : undefined} data-testid="theme-container">
+        <div className="App">
+          <MainPage charactersData={data.charactersData} characterDetails={data.characterDetails} />
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

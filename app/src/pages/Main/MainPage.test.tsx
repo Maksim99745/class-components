@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
-import { assert, beforeEach, describe, it } from 'vitest';
+import { assert, beforeEach, describe, it, vi } from 'vitest';
 import MainPage from './MainPage';
 
 const mockStore = configureMockStore();
@@ -12,6 +12,7 @@ vi.mock('@remix-run/react', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
+    useNavigation: () => vi.fn(),
     useNavigate: () => vi.fn(),
     useSearchParams: () => [
       {

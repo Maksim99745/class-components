@@ -1,7 +1,9 @@
+import { useNavigation } from '@remix-run/react';
 import { CharactersData } from 'app/src/models/character';
 import CharacterDetails from './components/CharacterDetails/CharacterDetails';
 import { CharactersView } from './components/CharacterView/CharactersView';
 import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
+import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
 import Pagination from './components/Pagination/Pagination';
 import { Search } from './components/Search/Search';
 import { ThemeButton } from './components/ThemeButton/ThemeButton';
@@ -15,6 +17,9 @@ type MainPageProps = {
 };
 
 function MainPage({ charactersData, characterDetails }: MainPageProps) {
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
+
   return (
     <div className={styles.mainPage}>
       <ThemeButton />
@@ -25,12 +30,12 @@ function MainPage({ charactersData, characterDetails }: MainPageProps) {
         <Search />
       </div>
       <div className={styles.resultsBlock}>
-        <CharactersView charactersData={charactersData} />
-        <CharacterDetails characterDetails={characterDetails} />
+        {!isLoading && <CharactersView charactersData={charactersData} />}
+        {isLoading && <LoaderSpinner />}
+        {!isLoading && <CharacterDetails characterDetails={characterDetails} />}
       </div>
-      <span role="presentation">
-        <Pagination charactersData={charactersData} />
-      </span>
+
+      <span role="presentation">{!isLoading && <Pagination charactersData={charactersData} />}</span>
       <FavoritesToolBar />
     </div>
   );

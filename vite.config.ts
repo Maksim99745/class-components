@@ -13,4 +13,10 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
+    },
+  },
+  base: '',
 });
