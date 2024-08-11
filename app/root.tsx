@@ -1,9 +1,16 @@
+/* eslint-disable react-refresh/only-export-components */
 import { ThemeProvider } from '@core/themes/ThemeProvider';
+import { MetaFunction } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { store } from '@store/store';
 import { Provider } from 'react-redux';
 import './App.css';
 import './index.scss';
+
+export const meta: MetaFunction = () => [
+  { title: 'Star wars' },
+  { name: 'description', content: 'Welcome to Star wars world!' },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,18 +22,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Provider store={store}>
-          <ThemeProvider>
-            {children}
-            <ScrollRestoration />
-            <Scripts />
-          </ThemeProvider>
-        </Provider>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   );
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <Provider store={store}>
+      <ThemeProvider>
+        <Outlet />
+      </ThemeProvider>
+    </Provider>
+  );
 }
