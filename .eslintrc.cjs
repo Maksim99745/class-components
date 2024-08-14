@@ -90,4 +90,15 @@ module.exports = {
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "react-hooks/exhaustive-deps": 'off',
   },
+  "overrides": [
+    {
+      "files": [
+        "*.test.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/consistent-type-assertions": "off",
+        "@typescript-eslint/no-unsafe-argument": "off"
+      },
+    }
+  ],
 };

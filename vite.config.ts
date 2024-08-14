@@ -22,7 +22,8 @@ export default defineConfig({
       '@enums': resolve(__dirname, './src/enums/'),
       '@constants': resolve(__dirname, './src/constants/'),
       '@utils': resolve(__dirname, './src/utils/'),
-      '@hooks': resolve(__dirname, './src/hooks/'),
+      '@store': resolve(__dirname, './src/store/'),
+      '@mocks': resolve(__dirname, './src/mocks/'),
     },
   },
   css: {

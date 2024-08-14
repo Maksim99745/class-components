@@ -1,82 +1,73 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { CharactersData } from '../../models/character';
-import ErrorButton from './components/ErrorButton';
-import LoaderSpinner from './components/LoaderSpinner';
-import Pagination from './components/Pagination';
-import { Results } from './components/Results';
-import { Search } from './components/Search';
+import { RootState } from 'src/store/store';
+import { useGetCharacterByNameQuery, useGetCharactersByPageQuery } from '../../store/api/api';
+import { CharactersView } from './components/CharacterView/CharactersView';
+import ErrorButton from './components/ErrorButton/ErrorButton';
+import FavoritesToolBar from './components/FavoritesToolBar/FavoritesToolBar';
+import LoaderSpinner from './components/LoaderSpinner/LoaderSpinner';
+import Pagination from './components/Pagination/Pagination';
+import { Search } from './components/Search/Search';
+import { ThemeButton } from './components/ThemeButton/ThemeButton';
 import { useInitFromLocalStorage } from './hooks/useInitFromLocalStorage';
+import { useMainPageActions } from './hooks/useMainPageActions';
+import { usePagination } from './hooks/usePagination';
 import styles from './MainPage.module.scss';
-import { getCharacters } from './methods/getCharacter';
-import { getNewPageData } from './methods/getNewPageData';
 
 function MainPage() {
-  const [characters, setCharacters] = useState<CharactersData | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isSearching, setIsSearching] = useState(false);
-  const [initialQuery, setInitialQuery] = useInitFromLocalStorage('class-component');
+  const { currentPage, toPrevPage, toNextPage } = usePagination();
+  const [query, setQuery] = useInitFromLocalStorage('class-component');
+  const favorites = useSelector((state: RootState) => state.favorites);
   const location = useLocation();
   const navigate = useNavigate();
+  const { updateCharacters } = useMainPageActions();
 
-  const updateSearchingStatus = (value: boolean): void => {
-    setIsSearching(value);
-  };
+  const { data: searchResult, isFetching: isSearching } = useGetCharacterByNameQuery(query);
+  const { data: pageData, isFetching: isPageLoading } = useGetCharactersByPageQuery(String(currentPage));
 
-  const search = async (searchQuery: string): Promise<void> => {
-    updateSearchingStatus(true);
-    setInitialQuery(searchQuery);
-    const charactersData = await getCharacters({ query: searchQuery });
-    setCharacters(charactersData);
-    setCurrentPage(1);
-    updateSearchingStatus(false);
-  };
+  const isBusy = isSearching || isPageLoading;
 
-  const changePage = async (pageNumber: number): Promise<void> => {
-    if (currentPage !== pageNumber) {
-      updateSearchingStatus(true);
-      navigate(`/?page=${pageNumber}`);
-      setCurrentPage(pageNumber);
-      const charactersData = await getNewPageData({ pageNumber });
-      setCharacters(charactersData);
-      updateSearchingStatus(false);
-    }
-  };
+  useEffect(() => {
+    updateCharacters(searchResult);
+  }, [searchResult]);
+
+  useEffect(() => {
+    updateCharacters(pageData);
+  }, [pageData]);
 
   const closeDetails = () => {
     const isDetailsOpened = location.pathname.includes('details');
     if (isDetailsOpened) {
-      navigate('/');
+      navigate(`/?page=${currentPage}`);
     }
   };
 
-  useEffect(() => {
-    search(initialQuery);
-  }, []);
-
   return (
     <div className={styles.mainPage}>
-      <div className={styles.nameContainer} onClick={() => closeDetails()} role="presentation">
+      <ThemeButton />
+      <div className={styles.nameContainer}>
         <h3>Find your favorite The Star Wars character!</h3>
         <ErrorButton />
       </div>
-
-      <Search search={search} />
+      <div onClick={() => closeDetails()} role="presentation">
+        <Search updateQuery={setQuery} isBusy={isBusy} />
+      </div>
       <div className={styles.resultsBlock} role="presentation">
-        {!isSearching && (
-          <div className={styles.resultsBlock} onClick={() => closeDetails()} role="presentation">
-            <Results characters={characters} />
+        {!isBusy && (
+          <div className={styles.resultsBlock} role="presentation">
+            <CharactersView />
           </div>
         )}
         <Outlet />
       </div>
-
-      {!isSearching && (
+      {!isBusy && (
         <span onClick={() => closeDetails()} role="presentation">
-          <Pagination charactersData={characters} currentPageNumber={currentPage} changePage={changePage} />
+          <Pagination currentPage={currentPage} toPrevPage={toPrevPage} toNextPage={toNextPage} />
         </span>
       )}
-      {isSearching && <LoaderSpinner />}
+      {isBusy && <LoaderSpinner />}
+      {favorites.length !== 0 && <FavoritesToolBar />}
     </div>
   );
 }
