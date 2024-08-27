@@ -3,17 +3,20 @@
     "target": "ES2020",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "jsx": "react-jsx",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "incremental": true,
     "esModuleInterop": true,
     "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
-    "types": ["vitest/globals"],
+    "plugins": [{ "name": "next" }],
     "paths": {
       "@core/*": ["./src/core/*"],
       "@pages/*": ["./src/pages/*"],
@@ -25,12 +28,21 @@
       "@test/*": ["./src/test/*"],
       "@store/*": ["./src/store/*"],
       "@mocks/*": ["./src/mocks/*"]
-    }
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true
   },
-  "include": ["src", "tests/setup.ts"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "include": [
+    "src/**/*",
+    "components/**/*",
+    "pages/**/*",
+    "tests/setup.ts",
+    "./dist/types/**/*.ts",
+    "./next-env.d.ts",
+    ".next/types/**/*.ts",
+    "components/Main",
+    "components/NotFound",
+    "store"
+  ],
+  "exclude": ["./node_modules"]
 }

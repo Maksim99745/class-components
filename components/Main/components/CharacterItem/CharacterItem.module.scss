@@ -1,0 +1,21 @@
+.characterBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 180px;
+  height: fit-content;
+  min-height: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.characterName {
+  align-self: center;
+  font-size: 14px;
+}
+
+.favorite {
+  font-size: 12px;
+  cursor: pointer;
+}

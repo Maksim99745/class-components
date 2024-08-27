@@ -38,7 +38,7 @@ module.exports = {
       },
     ],
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react-refresh/only-export-components': ['off', { allowConstantExport: true }],
     'no-multiple-empty-lines': ['error', { max: 1 }],
     'no-magic-numbers': [
       'error',
